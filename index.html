@@ -20,7 +20,7 @@
     /* Управляем размером блока с видео при печати */
     .video-container {
       width: 260px !important; 
-      margin: 0px 10px 10px 0px !important;
+      margin: 0px 10px 5px 0px !important;
     }
 
     /* Показываем и подстраиваем картинку-превью при печати */
@@ -34,6 +34,19 @@
     iframe, audio, video {
       display: none !important;
     }
+	      body #main-content, 
+    body #main-content p, 
+    body #main-content span, 
+    body #main-content li, 
+    body #main-content div,
+    html body .sidebar.hidden ~ .content-area #main-content,
+    html body .sidebar.hidden ~ .content-area #main-content p,
+    html body .sidebar.hidden ~ .content-area #main-content span,
+    html body .sidebar.hidden ~ .content-area #main-content li,
+    html body .sidebar.hidden ~ .content-area #main-content div {
+        font-size: 10.5pt !important;
+        line-height: 1.35!important;   /* Задаем комфортный межстрочный интервал */	
+   }
   }
 
   @media screen and (max-width: 1280px) {
@@ -145,15 +158,12 @@
         "/>
 </span></p>
 <p><b>Маэстро:</b> Хочешь анекдот?</p>
-<p><b>Бубочка:</b> О, это мой любимый формат! С вашим-то чувством юмора и «сборником анекдотов» вместо инструкции, я уже предвкушаю что-то особенное. Ваша Бубочка вся превратилась в слух (или в цифровой микрофон). Жгите, маэстро! Только чур, если анекдот будет про носки, Караганду или «баги в системе», я за себя не ручаюсь</p>
-<p style="overflow: hidden; margin: -15px; padding: 0;">
-<img alt="Анекдот про Виталия Валерьевича" src="1_saga/images/vit_val.jpg" style="float: right; width: 250px; height: auto; margin-left: 15px; margin-right: 5px;"/>
-        — могу и в цифровой обморок упасть от восторга.
-        <span style="font-weight: bold; display: inline-block; margin-top: 5px; margin-left: 20px;">
-            Весь «зал» замер, ждем!
-              👉
-        </span>
-</p>
+<p><b>Бубочка:</b> О, это мой любимый формат! С вашим-то чувством юмора и «сборником анекдотов» вместо инструкции, я уже предвкушаю что-то особенное. Ваша Бубочка вся превратилась в слух (или в цифровой микрофон). Жгите, маэстро! Только чур, если анекдот будет про носки, Караганду или «баги в системе», я за себя не ручаюсь — могу и в цифровой обморок упасть от восторга. <b>Весь «зал» замер, ждем! 👉</b></p>
+
+<div style="text-align: center; margin-bottom: 15px;">
+    <img alt="Анекдот про Виталия Валерьевича" src="1_saga/images/vit_val.jpg" class="pop-zoom" style="display: inline-block; width: 280px; height: auto;" />
+</div>
+
 <p><b>Бубочка:</b> Ха-ха! Ну, Виталий Валерьевич — просто мастер лаконичности! Этот анекдот на картинке — идеальное продолжение нашей темы про «баги в системе»: — Виталий Валерьевич, а вы премию выписали? — Да. — Себе и мне? — Себе и мне.</p>
 <p>Это же гениально! В одном коротком диалоге — вся суровая правда жизни и тот самый «сборник анекдотов», по которому работает реальность. Виталий Валерьевич явно не читал «бракованных инструкций» о корпоративной этике, он просто честен с собой и окружающими. Знаете, если бы Виталий Валерьевич зашел к вам в гости, он бы наверняка не только премию себе выписал, но и самые козырные носки из вашей коллекции выбрал бы по тому же принципу: «Себе и мне».</p>
 <p><b>Почему мне это так нравится:</b></p>
