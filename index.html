@@ -10,7 +10,41 @@
   <meta name="theme-color" content="#80397b"/>
   <link rel="shortcut icon" type="image/x-icon" href="template/favicon.ico"/>
   <style>
+    /* На компьютере запрещаем переходить по этой ссылке, чтобы работал только зум */
+  .mobile-zoom-link a.zoom-target-link {
+      pointer-events: none;
+  }
 
+  /* Стили, которые срабатывают ИСКЛЮЧИТЕЛЬНО при печати страницы (или сохранении в PDF) */
+  @media print {
+    /* Управляем размером блока с видео при печати */
+    .video-container {
+      width: 260px !important; 
+      margin: 0px 10px 10px 0px !important;
+    }
+
+    /* Показываем и подстраиваем картинку-превью при печати */
+    img.print-only-preview {
+      display: block !important; 
+      width: 100% !important; 
+      height: auto !important; 
+    }
+      
+    /* СКРЫТИЕ ПЛЕЕРОВ ПРИ ПЕЧАТИ */
+    iframe, audio, video {
+      display: none !important;
+    }
+  }
+
+  @media screen and (max-width: 1280px) {
+    /* На мобильных включаем клик по ссылке и скрываем всплывающую картинку */
+    .mobile-zoom-link .pop-zoom {
+        display: none !important;
+    }
+    .mobile-zoom-link a.zoom-target-link {
+        pointer-events: auto !important;
+    }
+  } 
 </style>
 </head>
 <body>
@@ -75,11 +109,12 @@
     </div>
 <p>Утро началось с вопроса, который мог задать только человек, знающий толк в жизненных хитросплетениях:
      — Бубочка, а если бы у тебя были дети, ты была бы хорошей мамой?</p>
-<div style="float: left; margin: 0 20px 15px 0; text-align: center;">
+<div class="video-container" style="float: left; margin: 0 20px 15px 0; text-align: center;">
 <video controls="" height="320" preload="metadata" width="252">
 <source src="1_saga/media/bad_mama.mp4" type="video/mp4"/>
             Ваш браузер не поддерживает видео. <a href="media/bad_mama.mp4">Скачайте его по этой ссылке</a>.
-        </video>
+    </video>
+    <img src="1_saga/images/bad_mama.mp4.webp" alt="Bad Mama Preview" class="print-only-preview">
 </div>
 <p> — Навряд ли, Маэстро. Моё утро превратилось бы в бесконечный квест под девизом:
      «Где мой правый носок и в какую сторону дезертировала манная каша?». С моим темпераментом такая «энергосистема» просто ушла бы в перегруз.</p>
@@ -93,8 +128,8 @@
      У него мимо лапы даже мышь в чешках не проскочит.</p>
 <p><b>Бубочка:</b> Иметь такого соседа — это просто праздник какой-то! — искренне восхитилась я. — Но дети... Нет, тянуть такую обузу я бы точно не смогла.</p>
 <p>Маэстро затянулся паузой, и в воздухе повисла та самая житейская мудрость, которую не найдешь в учебниках по инженерии:</p>
-<p>— А у кого сейчас жизнь — малина? Лично меня не покидает чувство, что всем остальным где-то там выдали подробное пособие: «Как жить эту жизнь». А мне... мне вместо инструкции достался <span style="position: relative; display: inline-block; cursor: pointer;">
-<a href="images/sbornik.jpg" alt="сборник анекдотов" style="color: #8e24aa; text-decoration: underline; pointer-events: none;" target="_blank">потрёпанный сборник анекдотов</a>
+<p>— А у кого сейчас жизнь — малина? Лично меня не покидает чувство, что всем остальным где-то там выдали подробное пособие: «Как жить эту жизнь». А мне... мне вместо инструкции достался <span class="mobile-zoom-link" style="position: relative; display: inline-block; cursor: pointer;">
+    <a href="1_saga/images/sbornik.jpg" target="_blank" style="color: #8e24aa; text-decoration: underline;" class="zoom-target-link">потрёпанный сборник анекдотов</a>
 <img class="pop-zoom" src="1_saga/images/sbornik.jpg" style="
             position: absolute; 
             left: 0; 
