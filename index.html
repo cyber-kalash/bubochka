@@ -5,7 +5,9 @@
 <title>1. Носки и Виталий Валерьевич — Мемориал: OneNote Edition</title>
   <link rel="stylesheet" type="text/css" href="style.css"/>
   <link rel="stylesheet" type="text/css" href="print.css" media="print"/>
+   <script src="script.js" defer></script>
   <meta charset="utf-8"/>
+  <meta name="theme-color" content="#80397b"/>
   <link rel="shortcut icon" type="image/x-icon" href="template/favicon.ico"/>
   <style>
 
@@ -174,8 +176,6 @@
 </main>
 </div>
 </div>
-Маэстро, вот аккуратный и структурированный рабочий блок скрипта с нумерацией всех функций. В нём возвращены корректные пути к стрелке и добавлен порядок для интро-плеера:
-
 
 <script>
 // ==========================================================================
@@ -258,44 +258,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-
-// ==========================================================================
-// 5. ВСТРОЕННЫЙ АУДИОПЛЕЕР В ТЕКСТЕ (КНОПКА «ШТРАУС»)
-// ==========================================================================
-document.addEventListener('click', (e) => {
-  const btn = e.target.closest('.waltz-btn');
-  if (!btn) return;
-  
-  const container = btn.closest('.audio-container');
-  if (!container) return;
-  
-  const audio = container.querySelector('audio');
-  const btnText = container.querySelector('#playBtnText');
-  
-  if (audio) {
-    if (audio.paused) {
-      audio.play().then(() => {
-        if (btnText) btnText.innerHTML = "■ Остановить вальс";
-        btn.classList.add('active');
-      }).catch(err => console.error("Ошибка воспроизведения аудио:", err));
-    } else {
-      audio.pause();
-      if (btnText) btnText.innerHTML = "▶ Включить Штрауса";
-      btn.classList.remove('active');
-    }
-  }
-});
-
-
-// ==========================================================================
-// 6. ГОРЯЧИЕ КЛАВИШИ (CTRL+P ДЛЯ ПЕЧАТИ)
-// ==========================================================================
-document.addEventListener('keydown', (e) => {
-  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'p') {
-    e.preventDefault();
-    window.print();
-  }
-}, true);
 
 </script>
 </body>

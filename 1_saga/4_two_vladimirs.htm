@@ -5,10 +5,26 @@
 <title>4. Про двух Владимиров — Мемориал: OneNote Edition</title>
 <link href="../print.css" rel="stylesheet" type="text/css" media="print"/>
 <link href="../style.css" rel="stylesheet" type="text/css"/>
+<script src="../script.js" defer></script>
 <meta charset="utf-8"/>
+<meta name="theme-color" content="#80397b"/>
 <link href="../template/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-<style>
-
+<style media="print">
+    /* PRINT.5. ОСНОВНОЙ ТЕКСТ И ШРИФТЫ */
+    body #main-content, 
+    body #main-content p, 
+    body #main-content span, 
+    body #main-content li, 
+    body #main-content div,
+    html body .sidebar.hidden ~ .content-area #main-content,
+    html body .sidebar.hidden ~ .content-area #main-content p,
+    html body .sidebar.hidden ~ .content-area #main-content span,
+    html body .sidebar.hidden ~ .content-area #main-content li,
+    html body .sidebar.hidden ~ .content-area #main-content div {
+        font-size: 10.5pt !important;
+        line-height: 1.3!important;   /* Задаем комфортный межстрочный интервал */		
+        color: #000000 !important;
+    }
 </style>
 </head>
 <body>
@@ -26,7 +42,7 @@
 <!-- НАБОР ГЛАВ №1: САГА ПРО ЧЕМОДАНЫ -->
 <nav class="menu-group" id="menu-saga">
 <!-- Активная глава выделена классом active-chapter -->
-<a class="" href="1_socks.htm">1. Носки и В.В.<button class="audio-toggle-btn" id="play-intro-btn" title="Воспроизвести"></button></a>
+<a class="" href="1_socks.htm">1. Носки и В.В.</a>
 <a class="" href="2_transformer.htm">2. Трёхфазный</a>
 <a class="" href="3_mayakovsky.htm">3. Маяковский</a>
 <a class="active-chapter" href="4_two_vladimirs.htm">4. Два Владимира</a>
@@ -35,7 +51,7 @@
 </nav>
 </aside>
 <!-- --- 4. СКРЫТЫЙ АУДИОПЛЕЕР --- -->
-<audio id="intro-audio" src="media/introduction.mp3"></audio>
+
 <!-- --- 5. ПРАВАЯ РАБОЧАЯ ОБЛАСТЬ --- -->
 <div class="content-area">
 <header class="content-header">
@@ -127,138 +143,9 @@
 </div>
 </div>
 <script>
-// ==========================================================================
-// 1. УТИЛИТЫ И ДЕТЕКТОР УСТРОЙСТВ
-// ==========================================================================
-const isMobile = () => /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-
-// ==========================================================================
-// 2. УПРАВЛЕНИЕ САЙДБАРОМ (СВОРАЧИВАНИЕ И РАСКРЫТИЕ)
-// ==========================================================================
-function toggleSidebar(state) { 
-  const sidebar = document.querySelector('.sidebar'); 
-  const toggleImg = document.getElementById('sidebar-toggle-img');
-  if (!sidebar) return;
-
-  // Переключение классов видимости
-  if (state === 'hide') sidebar.classList.add('hidden'); 
-  else if (state === 'show') sidebar.classList.remove('hidden'); 
-  else sidebar.classList.toggle('hidden'); 
-
-  // Сохранение состояния в локальном хранилище
-  const isHidden = sidebar.classList.contains('hidden');
-  localStorage.setItem('sidebar_hidden', isHidden);
-
-  // Смена иконки стрелочки (путь от корня index.html)
-  if (toggleImg) {
-    toggleImg.src = isHidden ? '../template/btn-open.png' : '../template/btn-close.png';
-  }
-}
-
-
-// ==========================================================================
-// 3. ПЛЕЕР ИНТРО (УПРАВЛЕНИЕ АУДИО В ШАПКЕ ГЛАВЫ)
-// ==========================================================================
-function initIntroPlayer() {
-  const audio = document.getElementById('intro-audio');
-  const playBtn = document.getElementById('play-intro-btn');
-
-  if (!playBtn || !audio) return;
-
-  // --- Проверка главы: показываем только на 1-й главе ---
-  const currentPath = window.location.pathname;
-  const isFirstChapter = currentPath.includes("1_socks.htm") || currentPath.endsWith("index.html") || currentPath.endsWith("/");
-
-  if (isFirstChapter) {
-    playBtn.style.display = "inline-block";
-  } else {
-    playBtn.style.display = "none";
-    audio.pause();
-    audio.currentTime = 0;
-    return; // На других главах дальше обработчик клика не выстраиваем
-  }
-
-  // Обработчик клика по кнопке "Play / Stop"
-  playBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (audio.paused) {
-      audio.play();
-      playBtn.classList.add('playing');
-    } else {
-      audio.pause();
-      audio.currentTime = 0;
-      playBtn.classList.remove('playing');
-    }
-  });
-
-  // Автоматический сброс кнопки при завершении трека
-  audio.addEventListener('ended', () => {
-    playBtn.classList.remove('playing');
-  });
-}
-
-
-// ==========================================================================
-// 4. ИНИЦИАЛИЗАЦИЯ И СОБЫТИЯ ПОСЛЕ ЗАГРУЗКИ DOM
-// ==========================================================================
-document.addEventListener('DOMContentLoaded', () => {
-  // 4.1. Кнопка сворачивания меню
-  document.getElementById('toggle-sidebar-btn')?.addEventListener('click', () => toggleSidebar());
-
-  // 4.2. Запуск аудиоплеера интро
-  initIntroPlayer();
-
-  // 4.3. Авто-сворачивание на мобильных устройствах или из кэша
-  if (isMobile()) { 
-    toggleSidebar('hide'); 
-  } else {
-    const isHiddenCache = localStorage.getItem('sidebar_hidden') === 'true';
-    toggleSidebar(isHiddenCache ? 'hide' : 'show');
-  }
-});
-
-
-// ==========================================================================
-// 5. ВСТРОЕННЫЙ АУДИОПЛЕЕР В ТЕКСТЕ (КНОПКА «ШТРАУС»)
-// ==========================================================================
-document.addEventListener('click', (e) => {
-  const btn = e.target.closest('.waltz-btn');
-  if (!btn) return;
-  
-  const container = btn.closest('.audio-container');
-  if (!container) return;
-  
-  const audio = container.querySelector('audio');
-  const btnText = container.querySelector('#playBtnText');
-  
-  if (audio) {
-    if (audio.paused) {
-      audio.play().then(() => {
-        if (btnText) btnText.innerHTML = "■ Остановить вальс";
-        btn.classList.add('active');
-      }).catch(err => console.error("Ошибка воспроизведения аудио:", err));
-    } else {
-      audio.pause();
-      if (btnText) btnText.innerHTML = "▶ Включить Штрауса";
-      btn.classList.remove('active');
-    }
-  }
-});
-
-
-// ==========================================================================
-// 6. ГОРЯЧИЕ КЛАВИШИ (CTRL+P ДЛЯ ПЕЧАТИ)
-// ==========================================================================
-document.addEventListener('keydown', (e) => {
-  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'p') {
-    e.preventDefault();
-    window.print();
-  }
-}, true);
-
+// Запускаем сразу при готовности структуры страницы
+document.addEventListener('DOMContentLoaded', initIntroPlayer);
 </script>
 </body>
 </html>

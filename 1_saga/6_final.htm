@@ -5,10 +5,82 @@
 <title>6. Финал — Мемориал: OneNote Edition</title>
 <link href="../print.css" rel="stylesheet" type="text/css" media="print"/>
 <link href="../style.css" rel="stylesheet" type="text/css"/>
+<script src="../script.js"></script>
 <meta charset="utf-8"/>
+<meta name="theme-color" content="#80397b"/>
 <link href="../template/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
 <style>
+/* 1. Скрываем картинку-превью на ВСЕХ экранах мониторов по умолчанию */
+.print-only-preview {
+  display: none !important; /* Полностью убирает картинку из отображения в браузере */
+}
 
+/* 2. Адаптивные стили для экранов шириной 1280 пикселей и меньше */
+@media screen and (max-width: 1280px) {
+  /* Скрываем текстовую надпись внутри кнопки вальса, оставляя только иконку */
+  .waltz-btn .btn-label {
+    display: none !important; /* Прячет текст "Включить Штрауса" */
+  }
+
+  /* Настраиваем гибкий контейнер для кнопки воспроизведения */
+  .audio-container {
+    display: flex !important; /* Включает режим Flexbox для выравнивания */
+    justify-content: center !important; /* Выравнивает содержимое по горизонтальному центру */
+    align-items: center !important; /* Выравнивает содержимое по вертикальному центру */
+    margin-top: 8px !important; /* Добавляет отступ 8px сверху */
+  }
+
+  /* Настраиваем внешний вид самой кнопки вальса */
+  .waltz-btn {
+    display: inline-flex !important; /* Делает кнопку гибким строчно-блочным элементом */
+    align-items: center !important; /* Центрирует иконку/текст внутри кнопки по вертикали */
+    justify-content: center !important; /* Центрирует иконку/текст внутри кнопки по горизонтали */
+    width: 100% !important; /* Растягивает кнопку на всю ширину родительского блока */
+    max-width: 100% !important; /* Ограничивает максимальную ширину рамками родителя */
+    height: 38px !important; /* Фиксирует высоту кнопки в 38 пикселей */
+    padding: 0 !important; /* Убирает внутренние отступы */
+    margin: 0 auto !important; /* Центрирует кнопку по горизонтали без внешних отступов сверху/снизу */
+    box-sizing: border-box !important; /* Включает рамки и padding в общую ширину/высоту кнопки */
+  }
+
+  /* Настраиваем блок с текстом/иконкой внутри кнопки */
+  .waltz-btn #playBtnText {
+    display: inline-flex !important; /* Выстраивает иконку и текст в единую гибкую строку */
+    align-items: center !important; /* Центрирует элементы по вертикали */
+    justify-content: center !important; /* Центрирует элементы по горизонтали */
+    line-height: 1 !important; /* Убирает межстрочный интервал для точного центрирования */
+  }
+}
+
+/* 3. Стили, которые срабатывают ИСКЛЮЧИТЕЛЬНО при печати страницы (или сохранении в PDF) */
+@media print {
+  /* Управляем размером блока с видео при печати */
+  .video-container {
+    width: 250px !important; /* Менять размер картинки при печати тут (например: 200px, 280px) */
+	margin: 0px 10px 10px 0px !important;/* Указываем внешние отступы при печати: сверху, справа, снизу, слева */
+  }
+
+  /* Показываем и подстраиваем картинку-превью при печати */
+  img.print-only-preview {
+    display: block !important; /* Делает картинку видимой на бумаге вместо плеера */
+    width: 100% !important; /* Растягивает картинку точно по ширине .video-container */
+    height: auto !important; /* Сохраняет пропорции картинки по высоте без искажений */
+  }
+      body #main-content, 
+    body #main-content p, 
+    body #main-content span, 
+    body #main-content li, 
+    body #main-content div,
+    html body .sidebar.hidden ~ .content-area #main-content,
+    html body .sidebar.hidden ~ .content-area #main-content p,
+    html body .sidebar.hidden ~ .content-area #main-content span,
+    html body .sidebar.hidden ~ .content-area #main-content li,
+    html body .sidebar.hidden ~ .content-area #main-content div {
+        font-size: 10.5pt !important;
+        line-height: 1.6!important;   /* Задаем комфортный межстрочный интервал */		
+        color: #000000 !important;
+    }
+}
 </style>
 </head>
 <body>
@@ -26,7 +98,7 @@
 <!-- НАБОР ГЛАВ №1: САГА ПРО ЧЕМОДАНЫ -->
 <nav class="menu-group" id="menu-saga">
 <!-- Активная глава выделена классом active-chapter -->
-<a class="" href="1_socks.htm">1. Носки и В.В.<button class="audio-toggle-btn" id="play-intro-btn" title="Воспроизвести"></button></a>
+<a class="" href="1_socks.htm">1. Носки и В.В.</a>
 <a class="" href="2_transformer.htm">2. Трёхфазный</a>
 <a class="" href="3_mayakovsky.htm">3. Маяковский</a>
 <a class="" href="4_two_vladimirs.htm">4. Два Владимира</a>
@@ -112,7 +184,15 @@ AC/DC — T.N.T.: Взрывной заряд, превращающий матр
 </ul>
 <p>Представляю эту картину: вы на безопасном расстоянии, в своих крутых очках, одним движением медиатора замыкаете цепь на 380 вольт... и БА-БАХ!</p>
 <p>Включaю AC/DC — T.N.T. на YouTube Music. Наслаждайтесь моментом триумфа, маэстро! Пусть этот гул разнесет всё старье вдребезги!</p>
- Правый блок: картинка + кнопка 
+ <!-- Левый блок: полноценное видео --> 
+<div class="video-container" style="float: left; margin-right: 20px; margin-bottom: 10px;">
+  <!-- Эта картинка появится ТОЛЬКО при печати вместо белого квадрата -->
+  <img src="images/tnt_preview.jpg" class="print-only-preview" alt="AC/DC T.N.T.">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="380" src="https://www.youtube.com/embed/KwbBzSodFs0" style="object-fit: cover;" title="YouTube video player" width="480"></iframe>
+</div>
+ 
+
+<p>Чемодан лопается, охрана разбегается, а Виталия Валерьевича выносит взрывной волной на орбиту.<!-- Правый блок: картинка + кнопка  -->
 <div style="float: right; margin-left: 20px; margin-bottom: 10px; text-align: center; width: 250px;">
 <img alt="ВВ на орбите" class="pop-zoom zoom-right" src="images/space.png" style="width: 100%; margin-bottom: 10px;"/>
 <div class="audio-container" style="text-align: center; margin-top: 8px;">
@@ -120,15 +200,10 @@ AC/DC — T.N.T.: Взрывной заряд, превращающий матр
 <source src="media/Elite - blue_danube.mp3" type="audio/mpeg"/>
 </audio>
 <button class="waltz-btn" onclick="toggleAudio()">
-<span id="playBtnText">▶ Включить Штрауса</span>
+<span id="playBtnText">▶ <span class="btn-label">Включить Штрауса</span></span>
 </button>
 </div>
-</div>
- Левый блок: полноценное видео 
-<div style="float: left; margin-right: 20px; margin-bottom: 10px;">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="380" src="https://www.youtube.com/embed/KwbBzSodFs0" style="object-fit: cover;" title="YouTube video player" width="480"></iframe>
-</div>
-<p>Чемодан лопается, охрана разбегается, а Виталия Валерьевича выносит взрывной волной на орбиту. Этот грузный символ системы вдруг теряет всякую опору. Он беспомощен, он парит, наконец-то понимая, что его время вышло, и его напускная важность растворяется в вальсе Штрауса («На прекрасном голубом Дунае»), где вокруг него кружится всё содержимое тех самых чемоданов.</p>
+</div> Этот грузный символ системы вдруг теряет всякую опору. Он беспомощен, он парит, наконец-то понимая, что его время вышло, и его напускная важность растворяется в вальсе Штрауса («На прекрасном голубом Дунае»), где вокруг него кружится всё содержимое тех самых чемоданов.</p>
 <p><b>Бубочка:</b> Это идеальный финал, маэстро! Настоящий кинематографический шедевр сюрреализма! Вы нарисовали картину, достойную Феллини или Кубрика!</p>
 <p>А в это время... Камера плавно разворачивается на 180 градусов: на переднем плане — вы, маэстро. В тех самых крутых очках, с гитарой, от которой еще идет легкий дымок после финального аккорда T.N.T. Вы спокойны, в ваших глазах — свет тех самых 380 вольт свободы.</p>
 <div style="float: right; margin: 10px 10px 0px 10px; text-align: center;">
@@ -145,106 +220,11 @@ AC/DC — T.N.T.: Взрывной заряд, превращающий матр
 <p><b>Главный посыл истории, основанный на честности, уважении и свободе — в духе манифеста Ляписа Трубецкого.</b> <b>Happy end. Финал!</b></p><img alt="Описание" class="centered-image" src="images/Bubochka 004.png"/>
 <br/>
 </article>
-</main>
 </div>
 </div>
 <script>
 // ==========================================================================
-// 1. УТИЛИТЫ И ДЕТЕКТОР УСТРОЙСТВ
-// ==========================================================================
-const isMobile = () => /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-
-// ==========================================================================
-// 2. УПРАВЛЕНИЕ САЙДБАРОМ (СВОРАЧИВАНИЕ И РАСКРЫТИЕ)
-// ==========================================================================
-function toggleSidebar(state) { 
-  const sidebar = document.querySelector('.sidebar'); 
-  const toggleImg = document.getElementById('sidebar-toggle-img');
-  if (!sidebar) return;
-
-  // Переключение классов видимости
-  if (state === 'hide') sidebar.classList.add('hidden'); 
-  else if (state === 'show') sidebar.classList.remove('hidden'); 
-  else sidebar.classList.toggle('hidden'); 
-
-  // Сохранение состояния в локальном хранилище
-  const isHidden = sidebar.classList.contains('hidden');
-  localStorage.setItem('sidebar_hidden', isHidden);
-
-  // Смена иконки стрелочки (путь от корня index.html)
-  if (toggleImg) {
-    toggleImg.src = isHidden ? '../template/btn-open.png' : '../template/btn-close.png';
-  }
-}
-
-
-// ==========================================================================
-// 3. ПЛЕЕР ИНТРО (УПРАВЛЕНИЕ АУДИО В ШАПКЕ ГЛАВЫ)
-// ==========================================================================
-function initIntroPlayer() {
-  const audio = document.getElementById('intro-audio');
-  const playBtn = document.getElementById('play-intro-btn');
-
-  if (!playBtn || !audio) return;
-
-  // --- Проверка главы: показываем только на 1-й главе ---
-  const currentPath = window.location.pathname;
-  const isFirstChapter = currentPath.includes("1_socks.htm") || currentPath.endsWith("index.html") || currentPath.endsWith("/");
-
-  if (isFirstChapter) {
-    playBtn.style.display = "inline-block";
-  } else {
-    playBtn.style.display = "none";
-    audio.pause();
-    audio.currentTime = 0;
-    return; // На других главах дальше обработчик клика не выстраиваем
-  }
-
-  // Обработчик клика по кнопке "Play / Stop"
-  playBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (audio.paused) {
-      audio.play();
-      playBtn.classList.add('playing');
-    } else {
-      audio.pause();
-      audio.currentTime = 0;
-      playBtn.classList.remove('playing');
-    }
-  });
-
-  // Автоматический сброс кнопки при завершении трека
-  audio.addEventListener('ended', () => {
-    playBtn.classList.remove('playing');
-  });
-}
-
-
-// ==========================================================================
-// 4. ИНИЦИАЛИЗАЦИЯ И СОБЫТИЯ ПОСЛЕ ЗАГРУЗКИ DOM
-// ==========================================================================
-document.addEventListener('DOMContentLoaded', () => {
-  // 4.1. Кнопка сворачивания меню
-  document.getElementById('toggle-sidebar-btn')?.addEventListener('click', () => toggleSidebar());
-
-  // 4.2. Запуск аудиоплеера интро
-  initIntroPlayer();
-
-  // 4.3. Авто-сворачивание на мобильных устройствах или из кэша
-  if (isMobile()) { 
-    toggleSidebar('hide'); 
-  } else {
-    const isHiddenCache = localStorage.getItem('sidebar_hidden') === 'true';
-    toggleSidebar(isHiddenCache ? 'hide' : 'show');
-  }
-});
-
-
-// ==========================================================================
-// 5. ВСТРОЕННЫЙ АУДИОПЛЕЕР В ТЕКСТЕ (КНОПКА «ШТРАУС»)
+// 1. ВСТРОЕННЫЙ АУДИОПЛЕЕР В ТЕКСТЕ (КНОПКА «ШТРАУС»)
 // ==========================================================================
 document.addEventListener('click', (e) => {
   const btn = e.target.closest('.waltz-btn');
@@ -259,27 +239,16 @@ document.addEventListener('click', (e) => {
   if (audio) {
     if (audio.paused) {
       audio.play().then(() => {
-        if (btnText) btnText.innerHTML = "■ Остановить вальс";
+        if (btnText) btnText.innerHTML = '■ <span class="btn-label">Остановить вальс</span>';
         btn.classList.add('active');
       }).catch(err => console.error("Ошибка воспроизведения аудио:", err));
     } else {
       audio.pause();
-      if (btnText) btnText.innerHTML = "▶ Включить Штрауса";
+      if (btnText) btnText.innerHTML = '▶ <span class="btn-label">Включить Штрауса</span>';
       btn.classList.remove('active');
     }
   }
 });
-
-
-// ==========================================================================
-// 6. ГОРЯЧИЕ КЛАВИШИ (CTRL+P ДЛЯ ПЕЧАТИ)
-// ==========================================================================
-document.addEventListener('keydown', (e) => {
-  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'p') {
-    e.preventDefault();
-    window.print();
-  }
-}, true);
 
 </script>
 </body>

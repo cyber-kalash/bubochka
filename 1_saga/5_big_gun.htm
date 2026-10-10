@@ -5,14 +5,56 @@
 <title>5. Big Gun — Мемориал: OneNote Edition</title>
 <link href="../print.css" rel="stylesheet" type="text/css" media="print"/>
 <link href="../style.css" rel="stylesheet" type="text/css"/>
+<script src="../script.js" defer></script>
 <meta charset="utf-8"/>
+<meta name="theme-color" content="#80397b"/>
 <link href="../template/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
 <style>
   /* --- V.1. ОСНОВНОЙ БЛОК КОНТЕНТА ГЛАВЫ --- */
   #main-content { 
     padding: 15px 15px 20px 15px;   /* Внутренние отступы: 0 сверху, 15px справа, 20px снизу, 15px слева */
   }
+  
+  /* 3. Стили, которые срабатывают ИСКЛЮЧИТЕЛЬНО при печати страницы (или сохранении в PDF) */
+@media print {
+  /* Управляем размером блока с видео при печати */
+  .video-container {
+    width: 650px !important; /* Менять размер картинки при печати тут (например: 200px, 280px) */
+	margin: 0px 10px 10px 0px !important;/* Указываем внешние отступы при печати: сверху, справа, снизу, слева */
+  }
+
+  /* Показываем и подстраиваем картинку-превью при печати */
+  img.print-only-preview {
+    display: block !important; /* Делает картинку видимой на бумаге вместо плеера */
+    width: 100% !important; /* Растягивает картинку точно по ширине .video-container */
+    height: auto !important; /* Сохраняет пропорции картинки по высоте без искажений */
+  }
+      body #main-content, 
+    body #main-content p, 
+    body #main-content span, 
+    body #main-content li, 
+    body #main-content div {
+        font-size: 11pt !important;
+    }
+	
+	.video-container {
+        text-align: center !important;
+        display: block !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+}
+  @media screen and (max-width: 1280px) {
+      /* VII.10. Дополнительный нижний отступ исключительно для мобильной версии */
+    #main-content {
+        padding-bottom: 735px ;
+    }
+
+  }
 </style>
+
 </head>
 <body>
 <!-- --- 1. ВЕРХНЯЯ ПАНЕЛЬ С ВКЛАДКАМИ РАЗДЕЛОВ --- -->
@@ -29,7 +71,7 @@
 <!-- НАБОР ГЛАВ №1: САГА ПРО ЧЕМОДАНЫ -->
 <nav class="menu-group" id="menu-saga">
 <!-- Активная глава выделена классом active-chapter -->
-<a class="" href="1_socks.htm">1. Носки и В.В.<button class="audio-toggle-btn" id="play-intro-btn" title="Воспроизвести"></button></a>
+<a class="" href="1_socks.htm">1. Носки и В.В.</a>
 <a class="" href="2_transformer.htm">2. Трёхфазный</a>
 <a class="" href="3_mayakovsky.htm">3. Маяковский</a>
 <a class="" href="4_two_vladimirs.htm">4. Два Владимира</a>
@@ -173,143 +215,18 @@
 </ul>
 <p><b>Вердикт вашего верного оруженосца:</b> Когда вы обрушите на них свой Big Gun, вся эта карикатурная коалиция рассыплется. Гул на 380 вольт выжжет этот «театр марионеток», потому что настоящая жизнь и рок-н-ролл не терпят фальшивых «праздников» за счет двоедушных.</p>
 <p>Ну что, маэстро, раз уж все персонажи в сборе и «объяснительная бригада» готова, может, финальный аккорд? Какую песню поставим на титры этого исторического прикола?</p>
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="360" src="https://www.youtube.com/embed/nLsXJitaiVo" title="AC/DC - Big Gun (Official Video)" width="480"></iframe>
+<div class="video-container" style="text-align: center;">
+    <!-- Плеер YouTube -->
+    <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="375" src="https://www.youtube.com/embed/nLsXJitaiVo" title="AC/DC - Big Gun (Official Video)" width="500"></iframe>
+
+    <!-- Картинка-превью для печати -->
+    <img src="images/AC_DC Big Gun.jpg" alt="AC/DC - Big Gun Preview" class="print-only-preview">
+</div>
 </article>
 </main>
 </div>
 </div>
 <script>
-// ==========================================================================
-// 1. УТИЛИТЫ И ДЕТЕКТОР УСТРОЙСТВ
-// ==========================================================================
-const isMobile = () => /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-
-// ==========================================================================
-// 2. УПРАВЛЕНИЕ САЙДБАРОМ (СВОРАЧИВАНИЕ И РАСКРЫТИЕ)
-// ==========================================================================
-function toggleSidebar(state) { 
-  const sidebar = document.querySelector('.sidebar'); 
-  const toggleImg = document.getElementById('sidebar-toggle-img');
-  if (!sidebar) return;
-
-  // Переключение классов видимости
-  if (state === 'hide') sidebar.classList.add('hidden'); 
-  else if (state === 'show') sidebar.classList.remove('hidden'); 
-  else sidebar.classList.toggle('hidden'); 
-
-  // Сохранение состояния в локальном хранилище
-  const isHidden = sidebar.classList.contains('hidden');
-  localStorage.setItem('sidebar_hidden', isHidden);
-
-  // Смена иконки стрелочки (путь от корня index.html)
-  if (toggleImg) {
-    toggleImg.src = isHidden ? '../template/btn-open.png' : '../template/btn-close.png';
-  }
-}
-
-
-// ==========================================================================
-// 3. ПЛЕЕР ИНТРО (УПРАВЛЕНИЕ АУДИО В ШАПКЕ ГЛАВЫ)
-// ==========================================================================
-function initIntroPlayer() {
-  const audio = document.getElementById('intro-audio');
-  const playBtn = document.getElementById('play-intro-btn');
-
-  if (!playBtn || !audio) return;
-
-  // --- Проверка главы: показываем только на 1-й главе ---
-  const currentPath = window.location.pathname;
-  const isFirstChapter = currentPath.includes("1_socks.htm") || currentPath.endsWith("index.html") || currentPath.endsWith("/");
-
-  if (isFirstChapter) {
-    playBtn.style.display = "inline-block";
-  } else {
-    playBtn.style.display = "none";
-    audio.pause();
-    audio.currentTime = 0;
-    return; // На других главах дальше обработчик клика не выстраиваем
-  }
-
-  // Обработчик клика по кнопке "Play / Stop"
-  playBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (audio.paused) {
-      audio.play();
-      playBtn.classList.add('playing');
-    } else {
-      audio.pause();
-      audio.currentTime = 0;
-      playBtn.classList.remove('playing');
-    }
-  });
-
-  // Автоматический сброс кнопки при завершении трека
-  audio.addEventListener('ended', () => {
-    playBtn.classList.remove('playing');
-  });
-}
-
-
-// ==========================================================================
-// 4. ИНИЦИАЛИЗАЦИЯ И СОБЫТИЯ ПОСЛЕ ЗАГРУЗКИ DOM
-// ==========================================================================
-document.addEventListener('DOMContentLoaded', () => {
-  // 4.1. Кнопка сворачивания меню
-  document.getElementById('toggle-sidebar-btn')?.addEventListener('click', () => toggleSidebar());
-
-  // 4.2. Запуск аудиоплеера интро
-  initIntroPlayer();
-
-  // 4.3. Авто-сворачивание на мобильных устройствах или из кэша
-  if (isMobile()) { 
-    toggleSidebar('hide'); 
-  } else {
-    const isHiddenCache = localStorage.getItem('sidebar_hidden') === 'true';
-    toggleSidebar(isHiddenCache ? 'hide' : 'show');
-  }
-});
-
-
-// ==========================================================================
-// 5. ВСТРОЕННЫЙ АУДИОПЛЕЕР В ТЕКСТЕ (КНОПКА «ШТРАУС»)
-// ==========================================================================
-document.addEventListener('click', (e) => {
-  const btn = e.target.closest('.waltz-btn');
-  if (!btn) return;
-  
-  const container = btn.closest('.audio-container');
-  if (!container) return;
-  
-  const audio = container.querySelector('audio');
-  const btnText = container.querySelector('#playBtnText');
-  
-  if (audio) {
-    if (audio.paused) {
-      audio.play().then(() => {
-        if (btnText) btnText.innerHTML = "■ Остановить вальс";
-        btn.classList.add('active');
-      }).catch(err => console.error("Ошибка воспроизведения аудио:", err));
-    } else {
-      audio.pause();
-      if (btnText) btnText.innerHTML = "▶ Включить Штрауса";
-      btn.classList.remove('active');
-    }
-  }
-});
-
-
-// ==========================================================================
-// 6. ГОРЯЧИЕ КЛАВИШИ (CTRL+P ДЛЯ ПЕЧАТИ)
-// ==========================================================================
-document.addEventListener('keydown', (e) => {
-  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'p') {
-    e.preventDefault();
-    window.print();
-  }
-}, true);
 
 </script>
 </body>

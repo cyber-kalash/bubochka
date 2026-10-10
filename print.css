@@ -4,16 +4,17 @@
 
 @media print {
 
-    /* --- PRINT.1. СКРЫТИЕ ЭЛЕМЕНТОВ ИНТЕРФЕЙСА --- */
+    /* PRINT.1. СКРЫТИЕ ЭЛЕМЕНТОВ ИНТЕРФЕЙСА И КНОПОК */
     .sidebar,
     .top-tabs,
     .nav-buttons,
     #play-intro-btn,
-    .header-logo-icon {
+    .header-logo-icon,
+    .waltz-btn {
         display: none !important;
     }
 
-    /* --- PRINT.2. СБРОС ОГРАНИЧЕНИЙ ВЫСОТЫ И ПРОКРУТКИ --- */
+    /* PRINT.2. СБРОС ОГРАНИЧЕНИЙ ВЫСОТЫ И ПРОКРУТКИ */
     html, body, .main-container, .content-area, main, #main-content {
         height: auto !important;
         max-height: none !important;
@@ -26,7 +27,7 @@
         color: #000000 !important;
     }
 
-    /* --- PRINT.3. ОФОРМЛЕНИЕ ШАПКИ И ЗАГОЛОВКА ГЛАВЫ --- */
+    /* PRINT.3. ШАПКА И ЛИНИЯ РАЗДЕЛИТЕЛЯ */
     .content-header {
         border-bottom: 2px solid #000000 !important;
         padding-bottom: 10px !important;
@@ -34,12 +35,13 @@
         background: transparent !important;
     }
 
+    /* PRINT.4. НАЗВАНИЕ ГЛАВЫ */
     #chapter-title {
         font-size: 18pt !important;
         color: #000000 !important;
     }
 
-    /* --- PRINT.4. НАСТРОЙКИ ШРИФТА ОСНОВНОГО ТЕКСТА --- */
+    /* PRINT.5. ОСНОВНОЙ ТЕКСТ И ШРИФТЫ */
     body #main-content, 
     body #main-content p, 
     body #main-content span, 
@@ -50,19 +52,32 @@
     html body .sidebar.hidden ~ .content-area #main-content span,
     html body .sidebar.hidden ~ .content-area #main-content li,
     html body .sidebar.hidden ~ .content-area #main-content div {
-        font-size: 11pt !important;
+        font-size: 10.5pt !important;
         line-height: 1.4 !important;
         color: #000000 !important;
     }
 
-   /* --- PRINT.5. ПРАВИЛА ОТОБРАЖЕНИЯ ИЗОБРАЖЕНИЙ И МЕДИА --- */
-    img, video, iframe, figure {
+    /* PRINT.6. ИЗОБРАЖЕНИЯ И МЕДИА */
+    img, video, figure {
         max-width: 100% !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
     }
 
-    /* --- PRINT.6. СКРЫТИЕ СЛУЖЕБНЫХ ИИ-БЛОКОВ --- */
+    /* PRINT.7. СКРЫТИЕ ПЛЕЕРОВ ПРИ ПЕЧАТИ */
+    iframe, audio {
+        display: none !important;
+    }
+
+    /* PRINT.8. ПОКАЗ КАРТИНОК-ПРЕВЬЮ */
+    img.print-only-preview {
+        display: block !important;
+        height: auto !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+
+    /* PRINT.9. СКРЫТИЕ ИИ-БЛОКОВ */
     .ai-hidden-room {
         display: none !important;
     }
