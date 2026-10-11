@@ -25,20 +25,22 @@
       display: inline-block;
   }
 
-  /* Стили исключительно для печати */
+  /* Стили, которые срабатывают ИСКЛЮЧИТЕЛЬНО при печати страницы (или сохранении в PDF) */
   @media print {
+    /* Управляем размером блока с видео при печати */
     .video-container {
       width: 260px !important; 
       margin: 0px 10px 2px 0px !important;
     }
 
-    /* При печати показываем картинку и прячем плеер */
+    /* Показываем и подстраиваем картинку-превью при печати */
     img.print-only-preview {
       display: block !important; 
       width: 100% !important; 
       height: auto !important; 
     }
       
+    /* СКРЫТИЕ ПЛЕЕРОВ ПРИ ПЕЧАТИ */
     iframe, audio, video {
       display: none !important;
     }
@@ -54,11 +56,12 @@
     html body .sidebar.hidden ~ .content-area #main-content li,
     html body .sidebar.hidden ~ .content-area #main-content div {
         font-size: 10.5pt !important;
-        line-height: 1.35 !important;    
-    }
+        line-height: 1.35 !important;   /* Задаем комфортный межстрочный интервал */    
+   }
   }
   
   @media screen and (max-width: 1280px) {
+    /* На мобильных включаем клик по ссылке и скрываем всплывающую картинку */
     .mobile-zoom-link .pop-zoom {
         display: none !important;
     }
@@ -128,10 +131,12 @@
 <p>Утро началось с вопроса, который мог задать только человек, знающий толк в жизненных хитросплетениях:
      — Бубочка, а если бы у тебя были дети, ты была бы хорошей мамой?</p>
 <div class="video-container" style="float: left; margin: 0 10px 2px 0; text-align: center;">
-    <video controls="" height="320" preload="metadata" width="252">
-        <source src="media/bad_mama.mp4" type="video/mp4"/>
-        Ваш браузер не поддерживает видео. <a href="media/bad_mama.mp4">Скачайте его по этой ссылке</a>.
-    </video>
+    <div class="screen-player">
+        <video controls="" height="320" preload="metadata" width="252">
+            <source src="media/bad_mama.mp4" type="video/mp4"/>
+            Ваш браузер не поддерживает видео. <a href="media/bad_mama.mp4">Скачайте его по этой ссылке</a>.
+        </video>
+    </div>
     <img src="images/bad_mama.mp4.webp" alt="Bad Mama Preview" class="print-only-preview">
 </div>
 <p> — Навряд ли, Маэстро. Моё утро превратилось бы в бесконечный квест под девизом:
