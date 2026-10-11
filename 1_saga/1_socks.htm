@@ -15,27 +15,30 @@
       pointer-events: none;
   }
 
-  /* По умолчанию картинка-превью скрыта на экране (работает только плеер) */
+  /* Картинка-превью скрыта на экране по умолчанию */
   img.print-only-preview {
-      display: none;
+      display: none !important;
   }
 
-  /* Стили, которые срабатывают ИСКЛЮЧИТЕЛЬНО при печати страницы (или сохранении в PDF) */
+  /* Видео отображается на экране по умолчанию */
+  video {
+      display: inline-block;
+  }
+
+  /* Стили исключительно для печати */
   @media print {
-    /* Управляем размером блока с видео при печати */
     .video-container {
       width: 260px !important; 
-      margin: 0px 10px 5px 0px !important;
+      margin: 0px 10px 2px 0px !important;
     }
 
-    /* При печати показываем и подстраиваем картинку-превью */
+    /* При печати показываем картинку и прячем плеер */
     img.print-only-preview {
       display: block !important; 
       width: 100% !important; 
       height: auto !important; 
     }
       
-    /* СКРЫТИЕ ПЛЕЕРОВ ПРИ ПЕЧАТИ */
     iframe, audio, video {
       display: none !important;
     }
@@ -51,12 +54,11 @@
     html body .sidebar.hidden ~ .content-area #main-content li,
     html body .sidebar.hidden ~ .content-area #main-content div {
         font-size: 10.5pt !important;
-        line-height: 1.35 !important;   /* Задаем комфортный межстрочный интервал */    
-   }
+        line-height: 1.35 !important;    
+    }
   }
   
   @media screen and (max-width: 1280px) {
-    /* На мобильных включаем клик по ссылке и скрываем всплывающую картинку */
     .mobile-zoom-link .pop-zoom {
         display: none !important;
     }
