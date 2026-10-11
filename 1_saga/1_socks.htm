@@ -9,13 +9,18 @@
   <meta charset="utf-8"/>
   <meta name="theme-color" content="#80397b"/>
   <link href="../template/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
- <style>
+<style>
   /* На компьютере запрещаем переходить по этой ссылке, чтобы работал только зум */
   .mobile-zoom-link a.zoom-target-link {
       pointer-events: none;
   }
 
- /* Стили, которые срабатывают ИСКЛЮЧИТЕЛЬНО при печати страницы (или сохранении в PDF) */
+  /* По умолчанию картинка-превью скрыта на экране (работает только плеер) */
+  img.print-only-preview {
+      display: none;
+  }
+
+  /* Стили, которые срабатывают ИСКЛЮЧИТЕЛЬНО при печати страницы (или сохранении в PDF) */
   @media print {
     /* Управляем размером блока с видео при печати */
     .video-container {
@@ -23,7 +28,7 @@
       margin: 0px 10px 5px 0px !important;
     }
 
-    /* Показываем и подстраиваем картинку-превью при печати */
+    /* При печати показываем и подстраиваем картинку-превью */
     img.print-only-preview {
       display: block !important; 
       width: 100% !important; 
@@ -34,7 +39,8 @@
     iframe, audio, video {
       display: none !important;
     }
-	      body #main-content, 
+      
+    body #main-content, 
     body #main-content p, 
     body #main-content span, 
     body #main-content li, 
@@ -45,7 +51,7 @@
     html body .sidebar.hidden ~ .content-area #main-content li,
     html body .sidebar.hidden ~ .content-area #main-content div {
         font-size: 10.5pt !important;
-        line-height: 1.35!important;   /* Задаем комфортный межстрочный интервал */	
+        line-height: 1.35 !important;   /* Задаем комфортный межстрочный интервал */    
    }
   }
   
