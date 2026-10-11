@@ -15,21 +15,19 @@
       pointer-events: none;
   }
 
-  /* Стили, которые срабатывают ИСКЛЮЧИТЕЛЬНО при печати страницы (или сохранении в PDF) */
+ /* Стили, которые срабатывают ИСКЛЮЧИТЕЛЬНО при печати страницы (или сохранении в PDF) */
   @media print {
     /* Управляем размером блока с видео при печати */
     .video-container {
       width: 260px !important; 
       margin: 0px 10px 5px 0px !important;
     }
-    .video-container video {
-      display: none !important;
-    }
+
     /* Показываем и подстраиваем картинку-превью при печати */
     img.print-only-preview {
-        display: block !important;
-        width: 252px !important;
-        height: auto !important;
+      display: block !important; 
+      width: 100% !important; 
+      height: auto !important; 
     }
       
     /* СКРЫТИЕ ПЛЕЕРОВ ПРИ ПЕЧАТИ */
