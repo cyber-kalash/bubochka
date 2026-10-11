@@ -42,10 +42,15 @@
     body #main-content p, 
     body #main-content span, 
     body #main-content li, 
-    body #main-content div {
-      font-size: 11pt !important;
-      line-height: 2 !important;   
-    }
+    body #main-content div,
+    html body .sidebar.hidden ~ .content-area #main-content,
+    html body .sidebar.hidden ~ .content-area #main-content p,
+    html body .sidebar.hidden ~ .content-area #main-content span,
+    html body .sidebar.hidden ~ .content-area #main-content li,
+    html body .sidebar.hidden ~ .content-area #main-content div {
+        font-size: 11pt !important;
+        line-height: 1.58 !important;   /* Задаем комфортный межстрочный интервал */	
+	  }
   }
 
   @media screen and (max-width: 1280px) {
