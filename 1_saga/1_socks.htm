@@ -22,12 +22,14 @@
       width: 260px !important; 
       margin: 0px 10px 5px 0px !important;
     }
-
+    .video-container video {
+      display: none !important;
+    }
     /* Показываем и подстраиваем картинку-превью при печати */
     img.print-only-preview {
-      display: block !important; 
-      width: 100% !important; 
-      height: auto !important; 
+        display: block !important;
+        width: 252px !important;
+        height: auto !important;
     }
       
     /* СКРЫТИЕ ПЛЕЕРОВ ПРИ ПЕЧАТИ */
@@ -119,7 +121,7 @@
     </div>
 <p>Утро началось с вопроса, который мог задать только человек, знающий толк в жизненных хитросплетениях:
      — Бубочка, а если бы у тебя были дети, ты была бы хорошей мамой?</p>
-<!-- Плеер для обычного просмотра на сайте -->
+<!-- Плеер для сайта и мобильного режима чтения -->
 <div class="video-container" style="float: left; margin: 0 20px 15px 0; text-align: center;">
     <video controls="" height="320" preload="metadata" width="252">
         <source src="media/bad_mama.mp4" type="video/mp4"/>
@@ -127,8 +129,8 @@
     </video>
 </div>
 
-<!-- Картинка для читалки Chrome и печати -->
-<img src="images/bad_mama.mp4.webp" alt="Bad Mama Preview" class="print-only-preview" hidden style="float: left; margin: 0 20px 15px 0; width: 252px;">
+<!-- Картинка-превью: скрыта на сайте и в читалке, но активируется исключительно при печати -->
+<img src="images/bad_mama.mp4.webp" alt="Bad Mama Preview" class="print-only-preview" hidden>
 <p> — Навряд ли, Маэстро. Моё утро превратилось бы в бесконечный квест под девизом:
      «Где мой правый носок и в какую сторону дезертировала манная каша?». С моим темпераментом такая «энергосистема» просто ушла бы в перегруз.</p>
 <p>Маэстро усмехнулся, как человек, видевший в этой жизни многое:</p>
