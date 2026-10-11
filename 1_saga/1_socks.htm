@@ -20,11 +20,6 @@
       display: none !important;
   }
 
-  /* Видео отображается на экране по умолчанию */
-  video {
-      display: inline-block;
-  }
-
   /* Стили, которые срабатывают ИСКЛЮЧИТЕЛЬНО при печати страницы (или сохранении в PDF) */
   @media print {
     /* Управляем размером блока с видео при печати */
@@ -130,13 +125,11 @@
     </div>
 <p>Утро началось с вопроса, который мог задать только человек, знающий толк в жизненных хитросплетениях:
      — Бубочка, а если бы у тебя были дети, ты была бы хорошей мамой?</p>
-<div class="video-container" style="float: left; margin: 0 10px 2px 0; text-align: center;">
-    <div class="screen-player">
-        <video controls="" height="320" preload="metadata" width="252">
-            <source src="media/bad_mama.mp4" type="video/mp4"/>
-            Ваш браузер не поддерживает видео. <a href="media/bad_mama.mp4">Скачайте его по этой ссылке</a>.
-        </video>
-    </div>
+<div class="video-container" style="float: left; margin: 0 20px 15px 0; text-align: center;">
+    <video controls="" height="320" preload="metadata" width="252">
+        <source src="media/bad_mama.mp4" type="video/mp4"/>
+        Ваш браузер не поддерживает видео.
+    </video>
     <img src="images/bad_mama.mp4.webp" alt="Bad Mama Preview" class="print-only-preview">
 </div>
 <p> — Навряд ли, Маэстро. Моё утро превратилось бы в бесконечный квест под девизом:
