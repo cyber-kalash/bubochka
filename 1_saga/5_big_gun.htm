@@ -12,46 +12,51 @@
 <style>
   /* --- V.1. ОСНОВНОЙ БЛОК КОНТЕНТА ГЛАВЫ --- */
   #main-content { 
-    padding: 15px 15px 20px 15px;   /* Внутренние отступы: 0 сверху, 15px справа, 20px снизу, 15px слева */
+    padding: 15px 15px 20px 15px;   
   }
   
-  /* 3. Стили, которые срабатывают ИСКЛЮЧИТЕЛЬНО при печати страницы (или сохранении в PDF) */
-@media print {
-  /* Управляем размером блока с видео при печати */
-  .video-container {
-    width: 650px !important; /* Менять размер картинки при печати тут (например: 200px, 280px) */
-	margin: 0px 10px 10px 0px !important;/* Указываем внешние отступы при печати: сверху, справа, снизу, слева */
+  /* Жестко прячем картинку-превью на любых экранах */
+  .video-container img.print-only-preview {
+    display: none !important;
   }
 
-  /* Показываем и подстраиваем картинку-превью при печати */
-  img.print-only-preview {
-    display: block !important; /* Делает картинку видимой на бумаге вместо плеера */
-    width: 100% !important; /* Растягивает картинку точно по ширине .video-container */
-    height: auto !important; /* Сохраняет пропорции картинки по высоте без искажений */
-  }
-      body #main-content, 
+  /* Стили для печати */
+  @media print {
+    .video-container {
+      width: 650px !important;
+      margin: 0px 10px 10px 0px !important;
+      text-align: center !important;
+      display: block !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    
+    .video-container iframe {
+      display: none !important;
+    }
+
+    .video-container img.print-only-preview {
+      display: block !important;
+      width: 100% !important;
+      height: auto !important;
+    }
+    
+    body #main-content, 
     body #main-content p, 
     body #main-content span, 
     body #main-content li, 
     body #main-content div {
-        font-size: 11pt !important;
+      font-size: 11pt !important;
+      line-height: 1.58 !important;   
     }
-	
-	.video-container {
-        text-align: center !important;
-        display: block !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
-    }
-}
-	  @media screen and (max-width: 1280px) {
-      /* VII.10. Дополнительный нижний отступ исключительно для мобильной версии */
-    #main-content {
-        padding-bottom: 680px ;
-    }
+  }
 
+  @media screen and (max-width: 1280px) {
+    #main-content {
+        padding-bottom: 735px;
+    }
   }
 </style>
 
