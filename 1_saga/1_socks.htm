@@ -268,6 +268,28 @@
   });
 })();
 
+// Срабатывает в момент вызова печати (перед открытием диалогового окна)
+window.addEventListener('beforeprint', function() {
+    const container = document.querySelector('.video-container');
+    
+    // Проверяем, чтобы картинка не дублировалась, если скрипт сработает повторно
+    if (!container.querySelector('.print-only-preview')) {
+        const img = document.createElement('img');
+        img.src = 'images/bad_mama.mp4.webp'; // Путь к картинке-превью
+        img.className = 'print-only-preview';
+        img.style.display = 'block';
+        container.appendChild(img); // Добавляем картинку в контейнер плеера
+    }
+});
+
+// Срабатывает сразу после закрытия окна печати или завершения процесса
+window.addEventListener('afterprint', function() {
+    const preview = document.querySelector('.print-only-preview');
+    
+    // Удаляем созданную картинку, чтобы в обычном режиме её не было в разметке
+    if (preview) preview.remove();
+});
+
 
 </script>
 </body>
