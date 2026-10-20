@@ -23,14 +23,15 @@
     html body .sidebar.hidden ~ .content-area #main-content div {
         font-size: 10.5pt !important;
         line-height: 1.3!important;   /* Задаем комфортный межстрочный интервал */		
-        color: #000000 !important;
+      
     }
 </style>
 </head>
 <body>
 <!-- --- 1. ВЕРХНЯЯ ПАНЕЛЬ С ВКЛАДКАМИ РАЗДЕЛОВ --- -->
 <div class="top-tabs">
-<a class="active" href="../index.html">Сага про чемоданы</a>
+<a class="active" href="../1_saga/1_socks.htm" id="tab-saga" onclick="switchTab(event, 'saga')">Сага про чемоданы</a>
+<a href="../2_stadium/1_suzy_quatro.htm" id="tab-stadium" onclick="switchTab(event, 'stadium')">Стадион</a>
 </div>
 <!-- --- 2. ГЛАВНЫЙ ОБЩИЙ КОНТЕЙНЕР (САЙДБАР + КОНТЕНТ) --- -->
 <div class="main-container">

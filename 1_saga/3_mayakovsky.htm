@@ -9,14 +9,28 @@
 <meta charset="utf-8"/>
 <meta name="theme-color" content="#80397b"/>
 <link href="../template/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-<style>
-
+<style media="print">
+    /* PRINT.5. ОСНОВНОЙ ТЕКСТ И ШРИФТЫ */
+    body #main-content, 
+    body #main-content p, 
+    body #main-content span, 
+    body #main-content li, 
+    body #main-content div,
+    html body .sidebar.hidden ~ .content-area #main-content,
+    html body .sidebar.hidden ~ .content-area #main-content p,
+    html body .sidebar.hidden ~ .content-area #main-content span,
+    html body .sidebar.hidden ~ .content-area #main-content li,
+    html body .sidebar.hidden ~ .content-area #main-content div {
+        font-size: 10pt !important;
+        line-height: 1.25 !important;   /* Задаем комфортный межстрочный интервал */		
+    }
 </style>
 </head>
 <body>
 <!-- --- 1. ВЕРХНЯЯ ПАНЕЛЬ С ВКЛАДКАМИ РАЗДЕЛОВ --- -->
 <div class="top-tabs">
-<a class="active" href="../index.html">Сага про чемоданы</a>
+<a class="active" href="../1_saga/1_socks.htm" id="tab-saga" onclick="switchTab(event, 'saga')">Сага про чемоданы</a>
+<a href="../2_stadium/1_suzy_quatro.htm" id="tab-stadium" onclick="switchTab(event, 'stadium')">Стадион</a>
 </div>
 <!-- --- 2. ГЛАВНЫЙ ОБЩИЙ КОНТЕЙНЕР (САЙДБАР + КОНТЕНТ) --- -->
 <div class="main-container">

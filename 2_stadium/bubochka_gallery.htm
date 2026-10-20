@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <title>Фотогалерея Бубочки — Мемориал</title>
+  <link href="../style.css" rel="stylesheet" type="text/css"/>
+  <link href="../print.css" rel="stylesheet" type="text/css" media="print"/>
+  <script src="../script.js" defer></script>
+  <meta charset="utf-8"/>
+  <meta name="theme-color" content="#80397b"/>
+  <link href="../template/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <style>
+    #main-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Делаем сетку ровно из 3 фиксированных колонок (слева, по центру, справа) */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin: 25px 0;
+    }
+
+    /* Колонки */
+    .gallery-column {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .gallery-item {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .gallery-item:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    /* На мобильных объединяем в одну колонку, чтобы не сжималось */
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. ВЕРХНЯЯ ПАНЕЛЬ С ВКЛАДКАМИ -->
+  <div class="top-tabs">
+    <a href="../index.html" id="tab-saga">Сага про чемоданы</a>
+    <a class="active" href="4_stadium.htm" id="tab-stadium">Стадион</a>
+  </div>
+
+  <!-- 2. ГЛАВНЫЙ ОБЩИЙ КОНТЕЙНЕР -->
+  <div class="main-container">
+    
+    <!-- ПРАВАЯ РАБОЧАЯ ОБЛАСТЬ -->
+    <div class="content-area">
+      
+      <!-- ШАПКА С КНОПКОЙ НАЗАД -->
+      <div class="content-header">
+        <div class="nav-buttons">
+          <a href="6_dk.htm" title="Назад к главе">
+            <img src="../template/btn_prev_n.png" alt="Назад">
+          </a>
+        </div>
+        <h3 class="header-title-text">Фотогалерея Бубочки</h3>
+        <div></div>
+      </div>
+
+      <!-- ОСНОВНОЙ КОНТЕНТ ГАЛЕРЕИ -->
+      <div id="main-content">
+        <p style="margin-top: 15px;">Полный архив иллюстраций и кадров к главе:</p>
+        
+        <div class="gallery-grid">
+  
+          <!-- ЛЕВАЯ КОЛОНКА (Растёт вправо: zoom-left) -->
+          <div class="gallery-column">
+            <img src="images/bubochka/Gemini_Generated_Image_5zjv1r5zjv1r5zjv.png" alt="Бубочка GTA" class="gallery-item pop-zoom zoom-left">
+            <img src="images/bubochka/Gemini_Generated_Image_j1bulj1bulj1bulj.png" alt="Бубочка GTA 2" class="gallery-item pop-zoom zoom-left">
+            <img src="images/bubochka/Бубочка 014.png" alt="Бубочка Чапай" class="gallery-item pop-zoom zoom-left">
+            <img src="images/bubochka/Бубочка 017.png" alt="Бубочка 017" class="gallery-item pop-zoom zoom-left">
+            <img src="images/bubochka/Бубочка 017.8.jpeg" alt="Бубочка 017.8" class="gallery-item pop-zoom zoom-left">
+            <img src="images/bubochka/Бубочка 017.9.jpeg" alt="Бубочка 017.9" class="gallery-item pop-zoom zoom-left">
+          </div>
+
+          <!-- ЦЕНТРАЛЬНАЯ КОЛОНКА (Растёт от центра) -->
+          <div class="gallery-column">
+            <img src="images/bubochka/Бубочка 017.2.png" alt="Бубочка 017.2" class="gallery-item pop-zoom">
+            <img src="images/bubochka/Бубочка 017.3.png" alt="Бубочка 017.3" class="gallery-item pop-zoom">
+            <img src="images/bubochka/Бубочка 017.5.jpeg" alt="Бубочка 017.5" class="gallery-item pop-zoom">
+            <img src="images/bubochka/Бубочка 020.png" alt="Бубочка 020" class="gallery-item pop-zoom">
+            <img src="images/bubochka/Бубочка 017,1.png" alt="Бубочка 017.1" class="gallery-item pop-zoom">
+          </div>
+
+          <!-- ПРАВАЯ КОЛОНКА (Растёт влево: zoom-right) -->
+          <div class="gallery-column">
+            <img src="images/bubochka/Бубочка 044.1.jpeg" alt="Бубочка 044.1" class="gallery-item pop-zoom zoom-right">
+            <img src="images/bubochka/Бубочка 044.jpeg" alt="Бубочка 044" class="gallery-item pop-zoom zoom-right">
+          </div>
+
+        </div>
+
+        <div style="margin-top: 25px; text-align: center;">
+          <a href="6_dk.htm" style="color: #80397b; font-weight: bold; text-decoration: none;">← Вернуться к главе «ДК»</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

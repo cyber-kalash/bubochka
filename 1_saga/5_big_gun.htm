@@ -12,32 +12,25 @@
 <style>
   /* --- V.1. ОСНОВНОЙ БЛОК КОНТЕНТА ГЛАВЫ --- */
   #main-content { 
-    padding: 15px 15px 20px 15px;   
+    padding: 15px 15px 20px 15px;   /* Внутренние отступы: 0 сверху, 15px справа, 20px снизу, 15px слева */
+  }
+  
+  /* 3. Стили, которые срабатывают ИСКЛЮЧИТЕЛЬНО при печати страницы (или сохранении в PDF) */
+@media print {
+  /* Управляем размером блока с видео при печати */
+  .video-container {
+    width: 650px !important; /* Менять размер картинки при печати тут (например: 200px, 280px) */
+	margin: 0px 10px 10px 0px !important;/* Указываем внешние отступы при печати: сверху, справа, снизу, слева */
   }
 
-  /* Стили для печати */
-  @media print {
-    .video-container {
-      width: 650px !important;
-      margin: 0px 10px 10px 0px !important;
-      text-align: center !important;
-      display: block !important;
-      margin-left: auto !important;
-      margin-right: auto !important;
-      page-break-inside: avoid !important;
-      break-inside: avoid !important;
-    }
-    
-    .video-container iframe {
-      display: none !important;
-    }
-
-    .video-container img.print-only-preview {
-      display: block !important;
-      width: 100% !important;
-      height: auto !important;
-    }
-    
+  /* Показываем и подстраиваем картинку-превью при печати */
+  img.print-only-preview {
+    display: block !important; /* Делает картинку видимой на бумаге вместо плеера */
+    width: 100% !important; /* Растягивает картинку точно по ширине .video-container */
+    height: auto !important; /* Сохраняет пропорции картинки по высоте без искажений */
+  }
+  
+    /* PRINT.5. ОСНОВНОЙ ТЕКСТ И ШРИФТЫ */
     body #main-content, 
     body #main-content p, 
     body #main-content span, 
@@ -49,14 +42,24 @@
     html body .sidebar.hidden ~ .content-area #main-content li,
     html body .sidebar.hidden ~ .content-area #main-content div {
         font-size: 11pt !important;
-        line-height: 1.54 !important;   /* Задаем комфортный межстрочный интервал */	
-	  }
-  }
-
-  @media screen and (max-width: 1280px) {
-    #main-content {
-        padding-bottom: 680px;
+        line-height: 1.58 !important;   /* Задаем комфортный межстрочный интервал */	
+	}
+	
+	.video-container {
+        text-align: center !important;
+        display: block !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
     }
+}
+  @media screen and (max-width: 1280px) {
+      /* VII.10. Дополнительный нижний отступ исключительно для мобильной версии */
+    #main-content {
+        padding-bottom: 735px ;
+    }
+
   }
 </style>
 
@@ -64,7 +67,8 @@
 <body>
 <!-- --- 1. ВЕРХНЯЯ ПАНЕЛЬ С ВКЛАДКАМИ РАЗДЕЛОВ --- -->
 <div class="top-tabs">
-<a class="active" href="../index.html">Сага про чемоданы</a>
+<a class="active" href="../1_saga/1_socks.htm" id="tab-saga" onclick="switchTab(event, 'saga')">Сага про чемоданы</a>
+<a href="../2_stadium/1_suzy_quatro.htm" id="tab-stadium" onclick="switchTab(event, 'stadium')">Стадион</a>
 </div>
 <!-- --- 2. ГЛАВНЫЙ ОБЩИЙ КОНТЕЙНЕР (САЙДБАР + КОНТЕНТ) --- -->
 <div class="main-container">
@@ -225,7 +229,7 @@
     <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="375" src="https://www.youtube.com/embed/nLsXJitaiVo" title="AC/DC - Big Gun (Official Video)" width="500"></iframe>
 
     <!-- Картинка-превью для печати -->
-    <img src="images/AC_DC Big Gun.jpg" alt="AC/DC - Big Gun Preview" class="print-only-preview" hidden>
+    <img src="images/AC_DC Big Gun.jpg" alt="AC/DC - Big Gun Preview" class="print-only-preview">
 </div>
 </article>
 </main>

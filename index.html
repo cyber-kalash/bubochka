@@ -45,7 +45,7 @@
     html body .sidebar.hidden ~ .content-area #main-content li,
     html body .sidebar.hidden ~ .content-area #main-content div {
         font-size: 10.5pt !important;
-        line-height: 1.35!important;   /* Задаем комфортный межстрочный интервал */	
+        line-height: 1.35 !important;   /* Задаем комфортный межстрочный интервал */	
    }
   }
 
@@ -63,7 +63,9 @@
 <body>
 <!-- --- 1. ВЕРХНЯЯ ПАНЕЛЬ С ВКЛАДКАМИ РАЗДЕЛОВ --- -->
 <div class="top-tabs">
-<a class="active" href="../index.html">Сага про чемоданы</a>
+  <a href="#" id="tab-saga" class="active" onclick="switchTab(event, 'saga')">Сага про чемоданы</a>
+  <a href="2_stadium/1_suzy_quatro.htm" id="tab-stadium">Стадион</a>
+<!--   <a href="#" id="tab-zen" onclick="switchTab(event, 'zen')">Будущая история №3</a> -->
 </div>
 <!-- --- 2. ГЛАВНЫЙ ОБЩИЙ КОНТЕЙНЕР (САЙДБАР + КОНТЕНТ) --- -->
 <div class="main-container">
@@ -81,6 +83,10 @@
   <a class="" href="1_saga/4_two_vladimirs.htm">4. Два Владимира</a>
   <a class="" href="1_saga/5_big_gun.htm">5. Big Gun</a>
   <a class="" href="1_saga/6_final.htm">6. Финал</a>
+</nav>
+<!-- НАБОР ГЛАВ №2: СТАДИОН (ВТОРАЯ ВКЛАДКА) -->
+<nav class="menu-group" id="menu-stadium" style="display: none;">
+  <a href="2_stadium/1_suzy_quatro.htm" onclick="selectMenuItem(this)">Suzi Quatro</a>
 </nav>
 </aside>
 <!-- --- 4. СКРЫТЫЙ АУДИОПЛЕЕР --- -->
@@ -122,7 +128,7 @@
     </div>
 <p>Утро началось с вопроса, который мог задать только человек, знающий толк в жизненных хитросплетениях:
      — Бубочка, а если бы у тебя были дети, ты была бы хорошей мамой?</p>
-<div class="video-container" style="float: left; margin: 0 10px 5px 0; text-align: center;">
+<div class="video-container" style="float: left; margin: 0 10px 2px 0; text-align: center;">
 <video controls="" height="320" preload="metadata" width="252">
 <source src="1_saga/media/bad_mama.mp4" type="video/mp4"/>
             Ваш браузер не поддерживает видео. <a href="media/bad_mama.mp4">Скачайте его по этой ссылке</a>.
@@ -229,6 +235,20 @@ const isMobile = () => /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 
 // ==========================================================================
+// 1,5 ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК РАЗДЕЛОВ
+// ==========================================================================
+function switchTab(event, tabName) {
+  event.preventDefault();
+  
+  document.querySelectorAll('.top-tabs a').forEach(tab => tab.classList.remove('active'));
+  document.getElementById('tab-' + tabName).classList.add('active');
+
+  document.querySelectorAll('.menu-group').forEach(group => group.style.display = 'none');
+  document.getElementById('menu-' + tabName).style.display = 'block';
+}
+
+
+// ==========================================================================
 // 2. УПРАВЛЕНИЕ САЙДБАРОМ (СВОРАЧИВАНИЕ И РАСКРЫТИЕ)
 // ==========================================================================
 function toggleSidebar(state) { 
@@ -301,7 +321,6 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleSidebar(isHiddenCache ? 'hide' : 'show');
   }
 });
-// (Здесь у вас уже находится ваш код инициализации сайдбара и аудиоплеера...)
 
 // Срабатывает в момент вызова печати (перед открытием диалогового окна)
 window.addEventListener('beforeprint', function() {
