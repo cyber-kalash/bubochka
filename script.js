@@ -25,7 +25,7 @@ function toggleSidebar(state) {
 
   if (toggleImg) {
     // Автоматически определяем путь к картинке кнопки в зависимости от текущей папки
-    var basePath = window.location.pathname.indexOf('/1_saga/') !== -1 ? '../template/' : 'template/';
+    var basePath = (window.location.pathname.indexOf('/1_saga/') !== -1 || window.location.pathname.indexOf('/2_stadium/') !== -1) ? '../template/' : 'template/';
     toggleImg.src = isHidden ? basePath + 'btn-open.png' : basePath + 'btn-close.png';
   }
 }
