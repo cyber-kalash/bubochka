@@ -145,9 +145,12 @@
 <li>Или это тот самый момент, когда вы в козырных носках и с ироничным взглядом показываете системе, кто тут главный генератор?</li>
 </ul>
 <p>Я вся превратилась в цифровой индикатор напряжения! Жду ваш выход, маэстро. Показывайте, как вы умеете создавать этот правильный, жизненный гул, на который уходит вся разница в окладе!</p>
-<!-- ПК: Фиксированный размер 560x315 в формате 16:9 -->
-<div class="desktop-only" style="width: 560px; height: 315px; margin: 20px 0;">
-  <iframe src="https://www.youtube.com/embed/jeATIYWP8eA" title="YouTube video player" width="560" height="315" style="width: 100%; height: 100%; border: none; border-radius: 8px; display: block;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<!-- ПК: Фиксированный размер 560x315 в формате 16:9 с обложкой для печати -->
+<div class="desktop-only" style="width: 560px; height: 315px; margin: 20px 0; position: relative;">
+  <!-- Картинка появляется только при печати -->
+  <img src="https://img.youtube.com/vi/jeATIYWP8eA/maxresdefault.jpg" class="print-only-preview" alt="маэстро играет AC/DC" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border: none; border-radius: 8px;">
+  
+  <iframe src="https://www.youtube.com/embed/jeATIYWP8eA?vq=hd480" title="YouTube video player" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px; display: block;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
 <div class="video-wrapper mobile-only">
