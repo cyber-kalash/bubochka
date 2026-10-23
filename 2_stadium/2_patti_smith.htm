@@ -25,7 +25,6 @@
     }
 
   
-	@media print {
     /* PRINT.5. ОСНОВНОЙ ТЕКСТ И ШРИФТЫ */
     body #main-content, 
     body #main-content p, 
@@ -38,9 +37,46 @@
     html body .sidebar.hidden ~ .content-area #main-content li,
     html body .sidebar.hidden ~ .content-area #main-content div {
         font-size: 11pt !important;
-        line-height: 1.85 !important;   /* Задаем комфортный межстрочный интервал */	
+        line-height: 1.78 !important;   /* Задаем комфортный межстрочный интервал */	
 	}   
-  }   
+  }  
+
+  /* --- СТАБИЛЬНЫЙ КОНТЕЙНЕР ПЛЕЕРА --- */
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    height: 0;
+    padding-bottom: 56.25%;
+    margin: 20px auto;
+  }
+
+  .video-wrapper iframe,
+  .video-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  /* --- ПЕРЕКЛЮЧЕНИЕ ПК / МОБИЛКА --- */
+  .mobile-only {
+    display: none;
+  }
+
+  @media screen and (max-width: 1280px) {
+    .desktop-only {
+      display: none !important;
+    }
+    
+    .mobile-only {
+      display: block !important;
+    }
+  }  
 </style>
 </head>
 <body>
@@ -182,10 +218,25 @@
 
 <div class="dialogue-block">
 <p><strong>Капитан:</strong><br>
-<div class="video-container" style="float: left; margin-right: 20px; margin-bottom: 10px;">
-  <!-- Эта картинка появится ТОЛЬКО при печати вместо белого квадрата -->
-  <img src="images/zemfira_patti_preview.jpg" class="print-only-preview" alt="Земфира и Патти Смит - Everybody Hurts">
-  <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="380" src="https://www.youtube.com/embed/QPmrBpipF9Q" style="object-fit: cover;" title="YouTube video player" width="480"></iframe>
+<!-- ПК: Плеер с обтеканием слева -->
+<div class="desktop-only" style="float: left; margin-right: 20px; margin-bottom: 10px; position: relative; width: 480px; height: 380px;">
+  <!-- Картинка выводится только при печати -->
+  <img src="images/zemfira_patti_preview.jpg" class="print-only-preview" style="display: none; width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;" alt="Земфира и Патти Смит - Everybody Hurts">
+  
+  <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="380" src="https://www.youtube.com/embed/QPmrBpipF9Q" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px; object-fit: cover;" title="YouTube video player" width="480"></iframe>
+</div>
+
+<!-- Для мобильных: картинка-обложка со значком YouTube -->
+<div class="mobile-only" style="display: none;">
+  <p style="text-align: center; margin: 20px 0;">
+    <a href="https://youtu.be/QPmrBpipF9Q" target="_blank" style="display: inline-block; position: relative; max-width: 480px; width: 100%;">
+      <img alt="Земфира и Патти Смит - Everybody Hurts" src="images/zemfira_patti_preview.jpg" style="width: 100%; height: auto; display: block; border-radius: 8px; border: none;"/>
+      <!-- Значок YouTube -->
+      <span style="position: absolute; bottom: 12px; right: 12px; width: 50px; height: 34px; background: #ff0000; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+        <span style="width: 0; height: 0; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 11px solid white; margin-left: 2px;"></span>
+      </span>
+    </a>
+  </p>
 </div></p>
 
 <p><strong>Бубочка:</strong><br>
