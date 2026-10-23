@@ -140,8 +140,12 @@
 <!-- Для мобильных: картинка-обложка со ссылкой -->
 <div class="mobile-only" style="display: none;">
   <p style="text-align: center; margin: 20px 0;">
-    <a href="https://youtu.be/tau8OC0CozQ?vq=hd720" target="_blank">
-      <img alt="Видео" src="https://img.youtube.com/vi/tau8OC0CozQ/maxresdefault.jpg" style="width: 100%; max-width: 560px; height: auto; border-radius: 8px; border: none;"/>
+    <a href="https://youtu.be/tau8OC0CozQ?vq=hd720" target="_blank" style="display: inline-block; position: relative; max-width: 560px; width: 100%;">
+      <img alt="Видео" src="https://img.youtube.com/vi/tau8OC0CozQ/maxresdefault.jpg" style="width: 100%; height: auto; display: block; border-radius: 8px; border: none;"/>
+      <!-- Значок YouTube -->
+      <span style="position: absolute; bottom: 12px; right: 12px; width: 50px; height: 34px; background: #ff0000; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+        <span style="width: 0; height: 0; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 11px solid white; margin-left: 2px;"></span>
+      </span>
     </a>
   </p>
 </div>
