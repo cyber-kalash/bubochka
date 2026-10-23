@@ -21,6 +21,14 @@
   .waltz-btn .btn-label {
     display: none !important; /* Прячет текст "Включить Штрауса" */
   }
+  
+      .desktop-only {
+      display: none !important;
+    }
+    
+    .mobile-only {
+      display: block !important;
+    }
 
   /* Настраиваем гибкий контейнер для кнопки воспроизведения */
   .audio-container {
@@ -54,17 +62,23 @@
 
 /* 3. Стили, которые срабатывают ИСКЛЮЧИТЕЛЬНО при печати страницы (или сохранении в PDF) */
 @media print {
-  /* Управляем размером блока с видео при печати */
+/* Снимаем фиксированную высоту плеера при печати, чтобы не было пустоты снизу */
   .video-container {
-    width: 250px !important; /* Менять размер картинки при печати тут (например: 200px, 280px) */
-	margin: 0px 10px 10px 0px !important;/* Указываем внешние отступы при печати: сверху, справа, снизу, слева */
+    width: 250px !important;
+    height: auto !important; 
+    float: left !important;
+    margin: 0px 15px 10px 0px !important;
+    position: static !important;
   }
 
-  /* Показываем и подстраиваем картинку-превью при печати */
+  /* Картинка при печати становится обычным блоком с родными пропорциями */
   img.print-only-preview {
-    display: block !important; /* Делает картинку видимой на бумаге вместо плеера */
-    width: 100% !important; /* Растягивает картинку точно по ширине .video-container */
-    height: auto !important; /* Сохраняет пропорции картинки по высоте без искажений */
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    border-radius: 8px !important;
   }
       body #main-content, 
     body #main-content p, 
@@ -76,8 +90,8 @@
     html body .sidebar.hidden ~ .content-area #main-content span,
     html body .sidebar.hidden ~ .content-area #main-content li,
     html body .sidebar.hidden ~ .content-area #main-content div {
-        font-size: 10.5pt !important;
-        line-height: 1.6!important;   /* Задаем комфортный межстрочный интервал */		
+        font-size: 11pt !important;
+        line-height: 1.55 !important;   /* Задаем комфортный межстрочный интервал */		
         color: #000000 !important;
     }
 }
@@ -186,12 +200,26 @@ AC/DC — T.N.T.: Взрывной заряд, превращающий матр
 <p>Представляю эту картину: вы на безопасном расстоянии, в своих крутых очках, одним движением медиатора замыкаете цепь на 380 вольт... и БА-БАХ!</p>
 <p>Включaю AC/DC — T.N.T. на YouTube Music. Наслаждайтесь моментом триумфа, маэстро! Пусть этот гул разнесет всё старье вдребезги!</p>
  <!-- Левый блок: полноценное видео --> 
-<div class="video-container" style="float: left; margin-right: 20px; margin-bottom: 10px;">
-  <!-- Эта картинка появится ТОЛЬКО при печати вместо белого квадрата -->
-  <img src="images/tnt_preview.jpg" class="print-only-preview" style="display: none;" aria-hidden="true" alt="AC/DC T.N.T.">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="380" src="https://www.youtube.com/embed/KwbBzSodFs0" style="object-fit: cover;" title="YouTube video player" width="480"></iframe>
+<!-- ПК: Плеер с обтеканием слева (сохраняет полный размер 480x380 на экране) -->
+<div class="desktop-only video-container" style="float: left; margin-right: 20px; margin-bottom: 10px; position: relative; width: 480px; height: 380px;">
+  <!-- Картинка выводится только при печати (при печати она сожмется благодаря стилям) -->
+  <img src="images/tnt_preview.jpg" class="print-only-preview" style="display: none; width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 8px;" alt="AC/DC T.N.T." aria-hidden="true">
+  
+  <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/KwbBzSodFs0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px; object-fit: cover;" title="YouTube video player"></iframe>
 </div>
- 
+
+<!-- Для мобильных: обложка напрямую с YouTube со значком -->
+<div class="mobile-only" style="display: none;">
+  <p style="text-align: center; margin: 20px 0;">
+    <a href="https://youtu.be/KwbBzSodFs0" target="_blank" style="display: inline-block; position: relative; max-width: 480px; width: 100%;">
+      <img alt="AC/DC T.N.T." src="https://img.youtube.com/vi/KwbBzSodFs0/maxresdefault.jpg" style="width: 100%; height: auto; display: block; border-radius: 8px; border: none;"/>
+      <!-- Значок YouTube -->
+      <span style="position: absolute; bottom: 12px; right: 12px; width: 50px; height: 34px; background: #ff0000; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+        <span style="width: 0; height: 0; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 11px solid white; margin-left: 2px;"></span>
+      </span>
+    </a>
+  </p>
+</div>
 
 <p>Чемодан лопается, охрана разбегается, а Виталия Валерьевича выносит взрывной волной на орбиту.<!-- Правый блок: картинка + кнопка  -->
 <div style="float: right; margin-left: 20px; margin-bottom: 10px; text-align: center; width: 250px;">
