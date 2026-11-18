@@ -88,11 +88,6 @@
 <nav class="menu-group" id="menu-stadium" style="display: none;">
   <a href="2_stadium/1_suzy_quatro.htm" onclick="selectMenuItem(this)">Suzi Quatro</a>
 </nav>
-</nav>
-<!-- НАБОР ГЛАВ №3: КАФЕ (ТРЕТЬЯ ВКЛАДКА) -->
-<nav class="menu-group" id="menu-zen" style="display: none;">
-  <a href="3_zen/Introduction.htm">Introduction</a>
-</nav>
 </aside>
 <!-- --- 4. СКРЫТЫЙ АУДИОПЛЕЕР --- -->
 <audio id="intro-audio" src="1_saga/media/introduction.mp3"></audio>
@@ -238,6 +233,19 @@
 // ==========================================================================
 const isMobile = () => /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
+
+// ==========================================================================
+// 1,5 ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК РАЗДЕЛОВ
+// ==========================================================================
+function switchTab(event, tabName) {
+  event.preventDefault();
+  
+  document.querySelectorAll('.top-tabs a').forEach(tab => tab.classList.remove('active'));
+  document.getElementById('tab-' + tabName).classList.add('active');
+
+  document.querySelectorAll('.menu-group').forEach(group => group.style.display = 'none');
+  document.getElementById('menu-' + tabName).style.display = 'block';
+}
 
 
 // ==========================================================================
