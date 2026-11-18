@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<title>Кафе «У причала» — Мемориал: OneNote Edition</title>
+  <link rel="stylesheet" type="text/css" href="../zen.css"/>
+  <link rel="stylesheet" type="text/css" href="../print.css" media="print"/>
+  <script src="../zen.js" defer></script>
+  <meta charset="utf-8"/>
+  <meta name="theme-color" content="#80397b"/>
+  <link rel="shortcut icon" type="image/x-icon" href="../template/favicon.ico"/>
+  <style>
+  
+  </style>
+</head>
+<body>
+<!-- --- 1. ВЕРХНЯЯ ПАНЕЛЬ С ВКЛАДКАМИ РАЗДЕЛОВ --- -->
+<div class="top-tabs">
+  <a href="/index.html" id="tab-saga">Сага про чемоданы</a>
+  <a href="/2_stadium/1_suzy_quatro.htm" id="tab-stadium">Стадион</a>
+  <a href="/3_zen/Introduction.htm" id="tab-zen" class="active">Кафе «У причала»</a>
+</div>
+
+<!-- --- 2. ГЛАВНЫЙ ОБЩИЙ КОНТЕЙНЕР (САЙДБАР + КОНТЕНТ) --- -->
+<div class="main-container">
+
+<!-- --- 3. ЛЕВОЕ МЕНЮ (САЙДБАР) --- -->
+<aside class="sidebar">
+<div id="sidebar-header-wrapper">
+<h4>Главы:</h4>
+</div>
+<nav class="menu-group" id="menu-zen">
+  <a class="chapter-link" href="Introduction.htm" onclick="loadZenChapter('Introduction.htm', event)">Введение</a>
+  <a class="chapter-link" href="1_Origins.htm" onclick="loadZenChapter('1_Origins.htm', event)">1. Истоки</a>
+  <a class="chapter-link" href="2_solitary_dock.htm" onclick="loadZenChapter('2_solitary_dock.htm', event)">2. Одинокий причал</a>
+</nav>
+</aside>
+
+<!-- --- 5. ПРАВАЯ РАБОЧАЯ ОБЛАСТЬ --- -->
+<div class="content-area">
+<header class="content-header">
+<div class="header-logo-icon">
+<button id="toggle-sidebar-btn" style="background:none; border:none; padding:0; cursor:pointer;" title="Скрыть/показать меню">
+<img alt="Toggle Sidebar" id="sidebar-toggle-img" src="../template/btn-close.png"/>
+</button>
+</div>
+<h2 class="header-title-text" id="chapter-title">«Глава седьмая»</h2>
+<div class="nav-buttons">
+  <span id="btn-prev" title="Назад" style="cursor: pointer;"><img alt="Назад" id="img-prev" src="../template/btn_prev_n.png"/></span>
+  <span id="btn-next" title="Вперед" style="cursor: pointer;"><img alt="Вперед" id="img-next" src="../template/btn_next_n.png"/></span>
+</div>
+</header>
+
+<!-- ТЕКСТ ГЛАВЫ -->
+<main id="main-content">
+  <article>
+    <div class="zen-tracing-container">
+      <div class="zen-content-inner">
+        <div class="cafe-tale-container">
+          <div class="meditation-guide audio-container">
+            <div class="chapter-header-flex" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
+              <h2 style="margin: 0;">Заголовок главы</h2>
+              <button class="waltz-btn" title="Включить аудио">
+                <span id="playBtnText">▶ <span class="btn-label">Включить аудио</span></span>
+              </button>
+            </div>
+            <audio src="media/3.aac"></audio>
+          </div>
+
+          <!-- Текст главы пишется здесь -->
+
+        </div>
+      </div>
+    </div>
+  </article>
+</main>
+</div>
+</div>
+</body>
+</html>

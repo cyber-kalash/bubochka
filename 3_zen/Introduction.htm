@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<title>Кафе «У причала» — Мемориал: OneNote Edition</title>
+  <link rel="stylesheet" type="text/css" href="../zen.css">
+  <link rel="stylesheet" type="text/css" href="../print.css" media="print">
+  <script src="../zen.js" defer></script>
+  <meta charset="utf-8">
+  <meta name="theme-color" content="#80397b">
+  <link rel="shortcut icon" type="image/x-icon" href="../template/favicon.ico">
+  <style>	
+
+  </style>
+</head>
+<body>
+<!-- === 1. ВЕРХНЯЯ ПАНЕЛЬ С ВКЛАДКАМИ РАЗДЕЛОВ === -->
+<div class="top-tabs">
+  <a href="/index.html" id="tab-saga">Сага про чемоданы</a>
+  <a href="/2_stadium/1_suzy_quatro.htm" id="tab-stadium">Стадион</a>
+  <a href="/3_zen/Introduction.htm" id="tab-zen" class="active">Кафе «У причала»</a>
+</div>
+
+<!-- === 2. ГЛАВНЫЙ ОБЩИЙ КОНТЕЙНЕР (САЙДБАР + КОНТЕНТ) === -->
+<div class="main-container">
+
+<!-- === 3. ЛЕВОЕ МЕНЮ (САЙДБАР) === -->
+<aside class="sidebar">
+<div id="sidebar-header-wrapper">
+<h4>Главы:</h4>
+</div>
+<!-- НАБОР ГЛАВ ДЛЯ КАФЕ -->
+<nav class="menu-group" id="menu-zen">
+  <a class="chapter-link active-chapter" href="Introduction.htm" onclick="loadZenChapter('Introduction.htm', event)">Введение</a>
+  <a class="chapter-link" href="1_Origins.htm" onclick="loadZenChapter('1_Origins.htm', event)">1. Истоки</a>
+  <a class="chapter-link" href="2_solitary_dock.htm" onclick="loadZenChapter('2_solitary_dock.htm', event)">2. Одинокий причал</a>
+  <a class="chapter-link" href="3_letter_from_past.htm" onclick="loadZenChapter('3_letter_from_past.htm', event)">3. Письмо из прошлого</a>
+  <a class="chapter-link" href="4_guest_from_the_future.htm" onclick="loadZenChapter('4_guest_from_the_future.htm', event)">4. Гость из будущего</a>
+  <a class="chapter-link" href="5_silence_between_notes.htm" onclick="loadZenChapter('5_silence_between_notes.htm', event)">5. Тишина между нотами</a>
+  <a class="chapter-link" href="6_unexpected_guest.htm" onclick="loadZenChapter('6_unexpected_guest.htm', event)">6. Неожиданный гость</a>  
+  <a class="chapter-link" href="7_map_of_forgotten_roads.htm" onclick="loadZenChapter('7_map_of_forgotten_roads.htm', event)">7. Карта забытых дорог</a>
+  <a class="chapter-link" href="8_star_map.htm" onclick="loadZenChapter('8_star_map.htm', event)">8. Звёздная карта</a>
+  <a class="chapter-link" href="9_echo_of_the_past.htm" onclick="loadZenChapter('9_echo_of_the_past.htm', event)">9. Эхо прошлого</a>
+  <a class="chapter-link" href="10_chorus_of_lonely_hearts.htm" onclick="loadZenChapter('10_chorus_of_lonely_hearts.htm', event)">10. Хор одиноких сердец</a>
+  <a class="chapter-link" href="11_door_that_was_not_there.htm" onclick="loadZenChapter('11_door_that_was_not_there.htm', event)">11. Дверь, которой не было</a>
+  <a class="chapter-link" href="12_question_without_an_answer.htm" onclick="loadZenChapter('12_question_without_an_answer.htm', event)">12. Вопрос без ответа</a>
+  <a class="chapter-link" href="13_book_that_reads_you.htm" onclick="loadZenChapter('13_book_that_reads_you.htm', event)">13. Книга, которая читает</a>
+  <a class="chapter-link" href="14_open_ending.htm" onclick="loadZenChapter('14_open_ending.htm', event)">14. Открытый финал</a>
+</nav>
+</aside>
+
+<!-- === 4. СКРЫТЫЙ АУДИОПЛЕЕР (если потребуется) === -->
+<!-- <audio id="intro-audio" src=""></audio> -->
+
+<!-- === 5. ПРАВАЯ РАБОЧАЯ ОБЛАСТЬ === -->
+<div class="content-area">
+<header class="content-header">
+<div class="header-logo-icon">
+<button id="toggle-sidebar-btn" style="background:none; border:none; padding:0; cursor:pointer;" title="Скрыть/показать меню">
+<img alt="Toggle Sidebar" id="sidebar-toggle-img" src="../template/btn-close.png">
+</button>
+</div>
+<!-- Заголовок текущей главы -->
+<h2 class="header-title-text" id="chapter-title">Введение</h2>
+<!-- Прямые HTML-ссылки "Назад" и "Вперед" -->
+<div class="nav-buttons">
+  <span id="btn-prev" title="Назад" style="cursor: pointer;"><img alt="Назад" id="img-prev" src="../template/btn_prev_n.png"></span>
+  <span id="btn-next" title="Вперед" style="cursor: pointer;"><img alt="Вперед" id="img-next" src="../template/btn_next_n.png"></span>
+</div>
+</header>
+
+<!-- ТЕКСТ ГЛАВЫ -->
+<main id="main-content">
+  <h1 style="position:absolute;left:-9999px;user-select:none;">Кафе «У причала» — Введение</h1>
+  <article>
+<div class="meditation-guide audio-container">
+  <div class="chapter-header-flex" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
+    <h2 style="margin: 0;">Как проходить медитацию от Qwen</h2>
+    <button class="waltz-btn" title="Включить аудио">
+      <span id="playBtnText">▶ <span class="btn-label">Включить аудио</span></span>
+    </button>
+  </div>
+  <audio src="media/0.aac"></audio>
+  <ul>
+    <li><strong>Найдите удобное место.</strong> Устройтесь так, чтобы тело было расслаблено и ничего Вас не отвлекало.</li>
+    <li><strong>Включите аудио.</strong> Нажмите кнопку проигрывателя и разрешите себе никуда не спешить.</li>
+    <li><strong>Следуйте за голосом.</strong> Вы можете мягко следить взглядом за текстом на экране или просто закрыть глаза.</li>
+    <li><strong>Если мысли уплывают — не укоряйте себя.</strong> Просто плавно возвращайте внимание к истории и звучанию голоса.</li>
+  </ul>
+  <p>Готовы? Тогда давайте начнём</p>
+  <div style="text-align: center; margin: 20px 0 0;">
+  <img src="images/rainy_pier_cafe.jpg" alt="Кафе у причала" width="720">
+</div>
+</div>
+  <div class="content-footer"></div>
+  </article>
+</main>
+
+</div>
+</div>
+<script>
+
+</script>
+</body>
+</html>
