@@ -1,0 +1,534 @@
+/* ==========================================================================
+   zen.css — КАРКАС ТРЕТЬЕЙ ВКЛАДКИ («Кафе «У причала»)
+   Подключается как: <link rel="stylesheet" href="../zen.css"/>
+   ========================================================================== */
+
+
+/* ==========================================================================
+   ГРУППА I. БАЗА И ГЛОБАЛЬНАЯ СЕТКА СТРАНИЦЫ
+   ========================================================================== */
+
+  /* --- I.1. ОБЩИЕ НАСТРОЙКИ СТРАНИЦЫ --- */
+  body {
+    background: /* #80397b; */ #e6e6e6;           /* Фиолетовая подложка (совпадает с верхней панелью) */
+    color: #333;                                  /* Основной цвет текста */
+    font-family: 'Segoe UI', Tahoma, sans-serif;  /* Системные шрифты без засечек */
+    margin: 0;                                    /* Убираем стандартные отступы браузера */
+    overflow: hidden;                             /* Страница не скроллится — скроллится только #main-content */
+  }
+
+  /* --- I.2. ГЛАВНЫЙ ОБЩИЙ КОНТЕЙНЕР (САЙДБАР + КОНТЕНТ) --- */
+  .main-container {
+    display: flex;                   /* Левое меню и правый контент в один ряд */
+    width: 100%;                     /* На всю ширину экрана */
+    min-height: calc(100vh - 45px);  /* Экран минус верхняя панель */
+    height: calc(100dvh - 45px);     /* Точный расчёт под мобилки и ПК */
+  }
+
+
+/* ==========================================================================
+   ГРУППА II. ВЕРХНЯЯ НАВИГАЦИЯ (ВКЛАДКИ)
+   ========================================================================== */
+
+  /* --- II.1. ВЕРХНЯЯ ПАНЕЛЬ ВКЛАДОК --- */
+  .top-tabs {
+    background: #80397b;        /* Тёмно-фиолетовый фон */
+    padding: 5px 10px 0 10px;   /* Отступы: сверху 5px, по бокам 10px */
+    display: flex;              /* Вкладки в одну строку */
+    flex-wrap: wrap;            /* Перенос на новую строку при нехватке места */
+    min-height: 40px;           /* Минимальная высота панели */
+    height: auto;               /* Высота растёт с количеством рядов */
+  }
+
+  /* --- II.2. КНОПКИ-ВКЛАДКИ --- */
+  .top-tabs a {
+    background: #ab59a2;        /* Светло-фиолетовый фон неактивной вкладки */
+    color: white;               /* Белый текст */
+    text-decoration: none;      /* Без подчёркивания */
+    padding: 8px 20px;          /* Внутренние отступы */
+    margin-right: 2px;          /* Зазор между вкладками */
+    border-radius: 5px 5px 0 0; /* Скругление только верхних углов */
+    font-size: 14px;            /* Размер шрифта */
+    display: inline-block;      /* Корректное применение размеров */
+    text-align: center;         /* Текст по центру */
+  }
+
+  /* --- II.3. АКТИВНАЯ ВКЛАДКА --- */
+  .top-tabs a.active {
+    background: #FAEEEE;        /* Светло-кремовый фон */
+    color: #80397b;             /* Фиолетовый текст */
+  }
+
+  /* --- II.4. НАВЕДЕНИЕ НА НЕАКТИВНУЮ ВКЛАДКУ --- */
+  .top-tabs a:not(.active):hover {
+    background: #c26db9;        /* Мгновенное осветление фона */
+  }
+
+
+/* ==========================================================================
+   ГРУППА III. БОКОВОЕ МЕНЮ (САЙДБАР И ССЫЛКИ ГЛАВ)
+   ========================================================================== */
+
+  /* --- III.1. ЛЕВАЯ ПАНЕЛЬ --- */
+  .sidebar {
+    width: 200px;                 /* Фиксированная ширина */
+    background: #FAEEEE;          /* Светло-кремовый фон */
+    border-right: 1px solid #ccc; /* Разделительная линия справа */
+    padding: 0 10px 10px 10px;    /* Внутренние отступы */
+    transition: all 0.3s ease;    /* Плавное сворачивание/раскрытие */
+    flex-shrink: 0;               /* Панель не сжимается */
+	display: flex;
+    flex-direction: column;
+  }
+
+  /* --- III.2. СКРЫТОЕ СОСТОЯНИЕ ПАНЕЛИ --- */
+  .sidebar.hidden {
+    width: 0;                   /* Схлопываем ширину */
+    padding: 0;                 /* Обнуляем отступы */
+    border: none;               /* Убираем рамку */
+    margin: 0;                  /* Обнуляем поля */
+    opacity: 0;                 /* Полностью прозрачна */
+    overflow: hidden;           /* Содержимое не вылезает */
+    pointer-events: none;       /* Не ловит клики */
+  }
+
+  /* --- III.3. ОБЁРТКА ЗАГОЛОВКА САЙДБАРА --- */
+  #sidebar-header-wrapper {
+    margin: 0 -10px;                   /* Компенсация внутренних отступов панели */
+    height: 44px;                      /* Высота как у правой шапки */
+    padding: 11px 0 10px 20px;         /* Внутренние отступы */
+    background: #FAEEEE;               /* Фон как у меню */
+    border-bottom: 1px solid #9B9B9B;  /* Линия под заголовком */
+    box-sizing: border-box;            /* Рамка входит в размер */
+  }
+
+  /* --- III.4. ТЕКСТ «ГЛАВЫ:» --- */
+  #sidebar-header-wrapper h4 {
+    margin: 0;                                 /* Сброс полей */
+    padding: 0;                                /* Сброс отступов */
+    font-size: 18px;                           /* Размер шрифта */
+    font-family: Verdana, Geneva, sans-serif;  /* Шрифт заголовка */
+    text-align: center;                        /* По центру */
+    font-weight: bold;                         /* Жирный */
+    color: #333;                               /* Тёмно-серый */
+  }
+
+  /* --- III.5. ССЫЛКИ ГЛАВ В МЕНЮ --- */
+  .sidebar a {
+    display: flex;                     /* Гибкая строка */
+    justify-content: space-between;    /* Текст влево, всё остальное вправо */
+    align-items: center;               /* По центру по вертикали */
+    flex: 1 1 0;             		 /* закладки делят высоту меню поровну */
+    min-height: 32px;        		 /* ниже этого не сжимаются */
+    max-height: 43px;        		 /* выше не растягиваются (как у Вас сейчас) */
+    padding: 0 10px;         		 /* высоту теперь задаёт flex, а не отступы */
+    color: #333;                       /* Тёмный текст */
+    text-decoration: none;             /* Без подчёркивания */
+    border-bottom: 1px solid #e0e0e0;  /* Линия снизу */
+    font-size: 14px;                   /* Размер шрифта */
+    white-space: nowrap;               /* Без переноса строк */
+  }
+
+  /* --- III.6. НАВЕДЕНИЕ НА ГЛАВУ --- */
+  .sidebar a:hover {
+    background-color: #ffffff;    /* Белый фон */
+    color: #80397b;               /* Фиолетовый текст */
+    font-weight: bold;            /* Жирный */
+  }
+
+  /* --- III.7. АКТИВНАЯ ГЛАВА --- */
+  .sidebar a.active-chapter {
+    background-color: #FFF;                                     /* Белая плашка #FFF */
+    color: #80397b;                                             /* Фиолетовый текст */
+    font-weight: bold;                                          /* Жирный */
+    margin-right: 0px;                              /* было -11px: теперь плашку растягивает сам список */
+    padding-right: 28px;                                        /* Зазор справа */
+    position: relative;                                         /* Для работы z-index */
+    z-index: 2;                                                 /* Над границей сайдбара */
+    border-top: 1px solid #9B9B9B;                              /* Верхняя серая рамка */
+    box-shadow: inset 4px 4px 8px -3px rgba(128, 57, 123, 0.3); /* Внутренняя тень для объёма */
+    white-space: nowrap;                                        /* Без переноса */
+  }
+
+  /* --- III.8. ПЕРВАЯ ГЛАВА, ЕСЛИ ОНА АКТИВНА --- */
+  .sidebar a.active-chapter:first-of-type {
+    border-top: none;  /* Не дублируем линию шапки */
+  }
+  
+    /* --- III.9. СПИСОК ГЛАВ ЗАНИМАЕТ ВСЁ МЕСТО ПОД ЗАГОЛОВКОМ --- */
+  #sidebar-header-wrapper {
+    flex-shrink: 0;           /* «Главы:» не сжимается */
+  }
+
+   /* --- III.10. СПИСОК ГЛАВ ЗАНИМАЕТ ВСЁ МЕСТО ПОД ЗАГОЛОВКОМ --- */
+  .menu-group {
+    display: flex;
+    flex-direction: column;   /* Закладки друг под другом */
+    flex: 1 1 auto;           /* Список занимает всю высоту под заголовком */
+    min-height: 0;            /* Разрешаем сжиматься, чтобы не вылезать за панель */
+    overflow-y: auto;         /* Если окно совсем низкое, появится вертикальная прокрутка */
+    overflow-x: hidden;       /* Горизонтальной прокрутки быть не должно */
+    margin-right: -11px;      /* Список доходит до края панели: отступ 10px + рамка 1px */
+  }
+
+  /* --- III.11. ЗАКЛАДКИ В СПИСКЕ: КОМПЕНСАЦИЯ ОТСТУПА СПРАВА --- */
+  .menu-group a {
+    margin-right: 11px;       /* Обычные закладки остаются на прежнем месте */
+  }
+/* ==========================================================================
+   ГРУППА IV. ПРАВАЯ РАБОЧАЯ ОБЛАСТЬ И ШАПКА
+   ========================================================================== */
+
+  /* --- IV.1. ПРАВАЯ РАБОЧАЯ ОБЛАСТЬ --- */
+  .content-area {
+    flex-grow: 1;           /* Занимает всё свободное место по ширине */
+    background: #fff;       /* Белая подложка */
+    position: relative;     /* Для внутренних элементов */
+    display: flex;          /* Вертикальная сборка шапки и текста */
+    flex-direction: column; /* Шапка сверху, контент снизу */
+    overflow: hidden;       /* Лишнее скрываем */
+  }
+
+  /* --- IV.2. ШАПКА С НАЗВАНИЕМ ГЛАВЫ --- */
+  .content-header {
+    display: flex;                     /* Элементы в строку */
+    justify-content: space-between;    /* Заголовок и кнопки по краям */
+    align-items: center;               /* По центру по вертикали */
+    height: 44px;                      /* Фиксированная высота */
+    padding: 0 15px;                   /* Отступы по бокам */
+    background: #FAEEEE;               /* Светло-кремовый фон */
+    border-bottom: 1px solid #9B9B9B;  /* Линия снизу */
+    box-sizing: border-box;            /* Рамка входит в высоту */
+    flex-shrink: 0;                    /* Шапка не сжимается */
+  }
+
+  /* --- IV.3. ЗАГОЛОВОК ГЛАВЫ В ШАПКЕ --- */
+  .header-title-text {
+    margin: 0;                                 /* Сброс полей */
+    color: #222;                               /* Тёмный текст */
+    font-size: 18px;                           /* Размер шрифта */
+    font-weight: bold;                         /* Жирный */
+    text-align: center;                        /* По центру */
+    flex-grow: 1;                              /* Занимает центр шапки */
+    font-family: Verdana, Geneva, sans-serif;  /* Шрифт заголовка */
+  }
+
+  /* --- IV.4. КОНТЕЙНЕР КНОПКИ СВОРАЧИВАНИЯ САЙДБАРА --- */
+  .header-logo-icon {
+    display: flex;           /* Центрирование иконки */
+    align-items: center;     /* По вертикали */
+    justify-content: center; /* По горизонтали */
+    flex-shrink: 0;          /* Не сжимается */
+  }
+
+  /* --- IV.5. СТРЕЛКА САЙДБАРА --- */
+  .header-logo-icon img {
+    width: 41px;            /* Ширина иконки */
+    height: 41px;           /* Высота иконки */
+    display: block;         /* Без системного отступа под картинкой */
+  }
+
+  /* --- IV.6. КОНТЕЙНЕР КНОПОК «НАЗАД / ВПЕРЁД» --- */
+  .nav-buttons {
+    display: flex;       /* Кнопки в одну линию */
+    gap: 6px;            /* Расстояние между кнопками */
+    align-items: center; /* По центру по вертикали */
+    flex-shrink: 0;      /* Не сжимается */
+  }
+
+  /* --- IV.7. ССЫЛКИ КНОПОК НАВИГАЦИИ --- */
+  .nav-buttons a {
+    text-decoration: none; /* Без подчёркивания */
+    display: block;        /* Блочный режим для точных размеров */
+  }
+
+  /* --- IV.8. КАРТИНКИ КНОПОК НАВИГАЦИИ --- */
+  .nav-buttons img {
+    height: 40px;        /* Высота стрелок */
+    width: auto;         /* Пропорциональная ширина */
+    display: block;      /* Без отступа снизу */
+  }
+
+
+/* ==========================================================================
+   ГРУППА V. ОБЛАСТЬ ЧТЕНИЯ КОНТЕНТА И ЗАЩИТА ВЫДЕЛЕНИЯ
+   ========================================================================== */
+
+  /* --- V.1. ОСНОВНОЙ БЛОК КОНТЕНТА ГЛАВЫ --- */
+  #main-content {
+    flex-grow: 1;                  /* Всё свободное место под шапкой */
+    overflow-y: auto;              /* Вертикальная прокрутка для длинных глав */
+    padding: 0px 15px 20px 15px;   /* Внутренние отступы */
+    box-sizing: border-box;        /* Отступы входят в ширину */
+  }
+
+  /* --- V.1.1. МАРКЕРЫ СПИСКОВ --- */
+  #main-content ol,
+  #main-content ul {
+    list-style-position: inside;
+  }
+
+  /* --- V.2. УДАЛЕНО: линия #main-content::after заменена тонким футером (см. V.6) --- */
+
+  /* --- V.3. СТРАХОВКА ДЛЯ ИЗОБРАЖЕНИЙ И ТАБЛИЦ --- */
+  #main-content img {
+    max-width: 100% !important;  /* Картинки не вылезают за блок */
+    height: auto !important;     /* Сохранение пропорций */
+  }
+
+  .content-table,
+  #main-content table {
+    width: 100% !important;      /* Таблицы на всю ширину */
+  }
+
+  /* --- V.4. ЗАПРЕТ ВЫДЕЛЕНИЯ ЭЛЕМЕНТОВ ИНТЕРФЕЙСА --- */
+  .sidebar, .content-header, .top-tabs, .nav-buttons, button {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* --- V.5. РАЗРЕШЕНИЕ ВЫДЕЛЕНИЯ ТОЛЬКО ДЛЯ ТЕКСТА СТАТЬИ --- */
+  #main-content, article {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+  
+    /* --- V.5.1. РАСТЯЖЕНИЕ ФОНА ГЛАВЫ НА ВСЮ ВЫСОТУ (перенесено из 1_Origins.htm) --- */
+  #main-content {
+    padding-bottom: 0;
+  }
+
+  @media print {
+    html, body, #main-content, .zen-tracing-container {
+      height: auto !important;
+      min-height: 0 !important;
+      max-height: none !important;
+      flex-grow: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  }
+
+
+  /* --- V.6. ФУТЕР: ЛИНИЯ С ОТСТУПОМ СВЕРХУ И СНИЗУ --- */
+  .content-footer {
+    padding: 25px 10px 15px;   /* сверху 25, по бокам 10, снизу 15 — именно они двигают линию */
+    flex-shrink: 0;
+  }
+
+  .content-footer::before {
+    content: "";
+    display: block;
+    border-top: 1px solid #80397b;   /* сама линия, печатается всегда */
+  }
+
+
+/* ==========================================================================
+   ГРУППА VI. МОБИЛЬНАЯ АДАПТАЦИЯ И АДАПТИВНЫЕ ШРИФТЫ
+   ========================================================================== */
+
+  @media screen and (max-width: 1280px) {
+
+    /* VI.1. Масштабирование всей страницы */
+    html {
+      zoom: 150%;
+    }
+
+    /* VI.2. Крупный шрифт для основного текста глав */
+    #main-content,
+    #main-content p,
+    #main-content span,
+    #main-content li,
+    #main-content div {
+      font-size: 26px;
+      line-height: 1.5 !important;
+    }
+
+    /* VI.3. Ссылки на главы в сайдбаре */
+    .sidebar a {
+      font-size: 20px;
+      line-height: 1.3;
+      white-space: normal;
+      word-wrap: break-word;
+	  flex: 0 0 auto;
+      max-height: none;
+      padding: 12px 10px;
+    }
+
+    /* VI.4. Заголовок «Главы:» */
+    #sidebar-header-wrapper h4 {
+      font-size: 20px;
+    }
+
+    /* VI.5. Название главы в шапке */
+    .header-title-text {
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    /* VI.6. Верхние вкладки */
+    .top-tabs a {
+      font-size: 18px;
+      padding: 10px 20px;
+    }
+
+    /* VI.7. Увеличение шрифта при скрытом сайдбаре */
+    .sidebar.hidden ~ .content-area #main-content,
+    .sidebar.hidden ~ .content-area #main-content p,
+    .sidebar.hidden ~ .content-area #main-content span,
+    .sidebar.hidden ~ .content-area #main-content li,
+    .sidebar.hidden ~ .content-area #main-content div {
+      font-size: 35px !important;
+      line-height: 1.4 !important;
+    }
+
+    /* VI.8. Дополнительный нижний отступ для мобильной версии */
+    #main-content {
+      padding-bottom: 680px;
+    }
+
+    /* VI.9. Прячем десктопную кнопку из шапки */
+    .content-header .desktop-audio {
+        display: none !important;
+    }
+    
+    /* VI.10. Показываем кнопку под заголовком */
+    .mobile-audio-wrapper {
+        display: block;
+        margin: 15px 0 20px 0;
+    }
+	
+	/* VI.11. Прячем десктопную кнопку из шапки на мобильных */
+    .content-header .desktop-audio {
+        display: none !important;
+    }
+    
+    /* VI.12. Показываем мобильную кнопку под заголовком */
+    .mobile-audio-wrapper {
+        display: block;
+        margin: 15px 0 20px 0;
+    }
+	
+    /* VI.13. Кнопка аудио на телефоне: значок крупнее, кнопка по центру */
+    #main-content .waltz-btn span,
+    .sidebar.hidden ~ .content-area #main-content .waltz-btn span {
+      font-size: 36px !important;   /* размер треугольника ▶ / квадрата ■ */
+      line-height: 40px !important;
+    }
+
+    .waltz-btn .btn-label {
+      display: none;
+    }
+
+    .chapter-header-flex .waltz-btn {
+      width: 80%;                   /* кнопка занимает 80% ширины строки */
+      max-width: 600px;             /* и не растягивается слишком сильно на планшете */
+      margin-left: auto;
+      margin-right: auto;
+    }
+	
+    /* VI.14. Список глав: запас снизу, чтобы последние главы можно было доскроллить в видимую область */
+    .menu-group {
+      padding-bottom: 680px;
+    }
+  }
+
+
+/* ==========================================================================
+   ГРУППА VII. ОФОРМЛЕНИЕ ТРЕТЬЕЙ ВКЛАДКИ (ФОН-КАФЕ И ЭФФЕКТ КАЛЬКИ)
+   ========================================================================== */
+
+  /* --- VII.1. КОНТЕЙНЕР С ФОНОВОЙ КАРТИНКОЙ --- */
+  .zen-tracing-container {
+    position: relative;                                         /* Для слоя кальки */
+    background-image: url('3_zen/images/rainy_pier_cafe1.jpg'); /* Путь считается от zen.css (корень сайта) */
+    background-size: cover;                                     /* Растянуть на весь контейнер */
+    background-attachment: fixed;                               /* Фон неподвижен при прокрутке */
+    background-position: center;                                /* По центру */
+    background-repeat: no-repeat;                               /* Без повторов */
+    padding: 10px 15px 20px 15px;                               /* Внутренние отступы */
+    margin: 0 -15px 0 -15px;                                    /* Компенсация полей родителя */
+    min-height: 100vh;                                          /* Минимальная высота */
+    height: auto;                                               /* Растёт вместе с контентом */
+    box-sizing: border-box;                                     /* Отступы входят в размер */
+  }
+
+  /* --- VII.2. МАТОВАЯ «КАЛЬКА» --- */
+  .zen-tracing-container::before {
+    content: "";                           /* Пустой слой */
+    position: absolute;                    /* Поверх фона */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.95) 0.5%, rgba(255, 255, 255, 0.75) 3%, rgba(255, 255, 255, 0.75) 100%); /* Плотный белый слева, растворяющийся в кальку */
+    backdrop-filter: blur(2px);            /* Лёгкое размытие */
+    z-index: 1;                            /* Между фоном и текстом */
+  }
+
+  /* --- VII.3. ТЕКСТОВЫЙ СЛОЙ ПОВЕРХ КАЛЬКИ --- */
+  .zen-content-inner {
+    position: relative;  /* Чтобы поднять над ::before */
+    z-index: 2;          /* Текст поверх подложки */
+  }
+ 
+/* ==========================================================================
+   ГРУППА VIII. ИНТЕРАКТИВНЫЕ ЭЛЕМЕНТЫ И МЕДИА 
+   ========================================================================== */  
+  
+/* --- VIII.1. КРАСИВАЯ ОБЪЁМНАЯ КНОПКА ДЛЯ ШТРАУСА --- */
+  .waltz-btn {
+    display: inline-block;                                 /* Режим отображения кнопки */
+    width: 210px;                                          /* Фиксированная ширина */
+    height: 44px;                                          /* Фиксированная высота */
+    background: /* #066A96;  */ #80397b;                   /* основной фон */
+    color: #ffffff;                                        /* Белый цвет текста */
+    border: 2px solid #3F5765;                             /* Тёмно-синяя рамка */
+    padding: 0 20px;                                       /* Внутренние отступы по бокам */
+    cursor: pointer;                                       /* Курсор-указатель */
+    border-radius: 5px;                                    /* Скругление углов 5px */
+    font-weight: bold;                                     /* Жирный шрифт */
+    font-family: sans-serif;                               /* Шрифт без засечек */
+    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.5);           /* Красная объёмная тень */
+    line-height: 40px;                                     /* Выравнивание текста строго по центру высоты */
+    vertical-align: middle;                                /* Центрирование по вертикали */
+    box-sizing: border-box;                                /* Учет границ в размерах кнопки */
+    transition: all 0.15s ease-in-out;                     /* Плавная анимация при наведении и клике */
+  }
+
+  /* --- VIII.2. СОСТОЯНИЕ КНОПКИ ПРИ НАВЕДЕНИИ МЫШИ --- */
+  .waltz-btn:hover {
+    background-color: #AB59A2;                             /* Смена фона на сиреневый */
+    border-color: #80397B;                                 /* Смена рамки на темно-фиолетовую */
+    box-shadow: 0 6px 12px rgba(255, 0, 0, 0.6);           /* Усиление тени при наведении */
+  }
+
+  /* --- VIII.3. СОСТОЯНИЕ КНОПКИ ПРИ НАЖАТИИ (КЛИК) --- */
+  .waltz-btn.active, .waltz-btn:active {
+    background: #80397B;                                   /* Тёмно-фиолетовый фон во время нажатия */
+    border-color: #693675;                                 /* Тёмная рамка */
+    transform: translateY(3px);                            /* Эффект утапливания кнопки вниз на 3px */
+    box-shadow: 0 1px 3px rgba(255, 0, 0, 0.4);            /* Уменьшение тени для правдоподобия нажатия */
+  }
+  
+  /* --- VIII.4. СОСТОЯНИЕ АКТИВНОЙ КНОПКИ ПРИ НАВЕДЕНИИ --- */
+  .waltz-btn.active:hover {
+    background-color: #AB59A2;
+    border-color: #80397B;
+  }
+  
+  /* --- VIII.5. КНОПКА АУДИО: ОДИНАКОВОЕ МЕСТО НА ВСЕХ СТРАНИЦАХ --- */
+  .chapter-header-flex .waltz-btn {
+    align-self: flex-start;   /* привязка к верху строки, а не к середине */
+    position: relative;
+    top: 5px;                 /* единое смещение; подберите на глаз */
+  }
+
+  /* --- VIII.6. КНОПКА АУДИО: вглаве ВВЕДЕНИЕ --- */
+  article > .meditation-guide {
+    padding-top: 10px;        
+  }

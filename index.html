@@ -63,9 +63,9 @@
 <body>
 <!-- --- 1. ВЕРХНЯЯ ПАНЕЛЬ С ВКЛАДКАМИ РАЗДЕЛОВ --- -->
 <div class="top-tabs">
-  <a href="#" id="tab-saga" class="active" onclick="switchTab(event, 'saga')">Сага про чемоданы</a>
-  <a href="2_stadium/1_suzy_quatro.htm" id="tab-stadium">Стадион</a>
-<!--   <a href="#" id="tab-zen" onclick="switchTab(event, 'zen')">Будущая история №3</a> -->
+  <a href="/index.html" id="tab-saga" class="active">Сага про чемоданы</a>
+  <a href="/2_stadium/1_suzy_quatro.htm" id="tab-stadium">Стадион</a>
+  <a href="/3_zen/Introduction.htm" id="tab-zen">Кафе «У причала»</a>
 </div>
 <!-- --- 2. ГЛАВНЫЙ ОБЩИЙ КОНТЕЙНЕР (САЙДБАР + КОНТЕНТ) --- -->
 <div class="main-container">
@@ -87,6 +87,11 @@
 <!-- НАБОР ГЛАВ №2: СТАДИОН (ВТОРАЯ ВКЛАДКА) -->
 <nav class="menu-group" id="menu-stadium" style="display: none;">
   <a href="2_stadium/1_suzy_quatro.htm" onclick="selectMenuItem(this)">Suzi Quatro</a>
+</nav>
+</nav>
+<!-- НАБОР ГЛАВ №3: КАФЕ (ТРЕТЬЯ ВКЛАДКА) -->
+<nav class="menu-group" id="menu-zen" style="display: none;">
+  <a href="3_zen/Introduction.htm">Introduction</a>
 </nav>
 </aside>
 <!-- --- 4. СКРЫТЫЙ АУДИОПЛЕЕР --- -->
@@ -233,19 +238,6 @@
 // ==========================================================================
 const isMobile = () => /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-
-// ==========================================================================
-// 1,5 ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК РАЗДЕЛОВ
-// ==========================================================================
-function switchTab(event, tabName) {
-  event.preventDefault();
-  
-  document.querySelectorAll('.top-tabs a').forEach(tab => tab.classList.remove('active'));
-  document.getElementById('tab-' + tabName).classList.add('active');
-
-  document.querySelectorAll('.menu-group').forEach(group => group.style.display = 'none');
-  document.getElementById('menu-' + tabName).style.display = 'block';
-}
 
 
 // ==========================================================================
