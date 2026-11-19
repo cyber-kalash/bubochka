@@ -209,3 +209,14 @@ document.addEventListener('click', (e) => {
     };
   }
 });
+
+// 6. Защита от «уезжания» страницы (например, при «Озвучить страницу» в Chrome)
+function resetPageScroll() {
+  if (window.scrollY || document.documentElement.scrollTop || document.body.scrollTop) {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }
+}
+window.addEventListener('scroll', resetPageScroll);
+document.addEventListener('DOMContentLoaded', resetPageScroll);
