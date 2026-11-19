@@ -166,7 +166,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Автоматически настраиваем стрелки при загрузке/обновлении любой страницы
   updateNavigation(window.location.pathname);
+
+  // Подсветка активной верхней вкладки («Кафе» — третья)
+  highlightTopTab();
 });
+
+// Подсветка верхней вкладки: на страницах 3_zen всегда третья
+function highlightTopTab() {
+  var tabs = document.querySelectorAll('.top-tabs a');
+  if (tabs.length < 3) return;
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].classList.toggle('active', i === 2);
+  }
+}
 
 // 5. Универсальный контроллер аудиокнопки для третей вкладки
 document.addEventListener('click', (e) => {
