@@ -75,3 +75,15 @@ function resetContainerScroll() {
   });
 }
 document.addEventListener('scroll', resetContainerScroll, true);
+
+// 7. Возвращаем саму страницу (окно) на место, если Chrome сдвинул её при «Озвучить страницу»
+function resetPageScroll() {
+  if (window.scrollY || document.documentElement.scrollTop || document.body.scrollTop) {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }
+}
+window.addEventListener('scroll', resetPageScroll);
+document.addEventListener('DOMContentLoaded', resetPageScroll);
+window.addEventListener('load', resetPageScroll);
