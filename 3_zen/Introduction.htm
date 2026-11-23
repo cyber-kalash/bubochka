@@ -9,7 +9,14 @@
   <meta name="theme-color" content="#80397b">
   <link rel="shortcut icon" type="image/x-icon" href="../template/favicon.ico">
   <style>	
-
+/* Заголовок первой главы на мобильных — меньше и в одну строку */
+@media screen and (max-width: 1280px) {
+  #main-content .chapter-header-flex h1 {
+    font-size: 65px;       /* вместо ~70px; при необходимости меняйте шагом по 2–4px */
+    line-height: 1.5;      /* Межстрочный интервал: 1.5 больше воздуха вокруг заголовка */
+    white-space: nowrap;   /* не переносить на вторую строку */
+  }
+}
   </style>
 </head>
 <body>
@@ -90,6 +97,7 @@
   <p>Готовы? Тогда давайте начнём</p>
   <div style="text-align: center; margin: 20px 0 0;">
   <img src="images/rainy_pier_cafe.jpg" alt="Кафе у причала" width="720">
+</div>    
 </div>
 </div>
   <div class="content-footer"></div>
