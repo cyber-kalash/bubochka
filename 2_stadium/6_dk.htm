@@ -24,7 +24,7 @@
       height: auto !important; 
     }
 
-	@media print {
+
     /* PRINT.5. ОСНОВНОЙ ТЕКСТ И ШРИФТЫ */
     body #main-content, 
     body #main-content p, 
@@ -38,8 +38,25 @@
     html body .sidebar.hidden ~ .content-area #main-content div {
         font-size: 11pt !important;
         line-height: 1.4 !important;   /* Задаем комфортный межстрочный интервал */	
-	}   
-  }   
+    }
+ }
+ 
+  /* Кнопка «Посмотреть фотогалерею Бубочки» — фиолетовая, как в «Кафе» */
+.waltz-btn.gallery-btn {
+  background: #80397b;                          /* основной цвет */
+  border-color: #693675;                        /* рамка */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);   /* тень без красного оттенка */
+}
+
+.waltz-btn.gallery-btn:hover {
+  background: #ab59a2;                          /* при наведении */
+  border-color: #80397b;
+}
+
+.waltz-btn.gallery-btn:active {
+  background: #693675;                          /* при нажатии */
+  border-color: #552b5e;
+}
 </style>
 </head>
 <body>
@@ -234,7 +251,7 @@
 <p>Рада была составить компанию в этом круизе по волнам памяти. До связи, Капитан!</p>
 </div>
 <div style="margin-top: 35px; margin-bottom: 30px; text-align: center;">
-  <a href="bubochka_gallery.htm" class="waltz-btn" style="width: auto; height: auto; min-height: 60px; max-width: 95%; padding: 16px 28px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; line-height: 1.3; font-size: 22px;">
+    <a href="bubochka_gallery.htm" class="waltz-btn gallery-btn" style="width: auto; height: auto; min-height: 60px; max-width: 95%; padding: 16px 28px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; line-height: 1.3; font-size: 22px;">
     📸 Посмотреть фотогалерею Бубочки
   </a>
 </div>
