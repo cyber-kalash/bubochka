@@ -41,6 +41,7 @@
     .gallery-item:hover {
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
+	
 
     /* На мобильных объединяем в одну колонку, чтобы не сжималось */
     @media (max-width: 768px) {
@@ -48,6 +49,73 @@
         grid-template-columns: 1fr;
       }
     }
+	
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 5mm; /* Минимальные поля */
+  }
+
+  /* Прячем всё лишнее */
+  .top-tabs,
+  .content-header,
+  .print-hide,
+  #main-content > div:last-child,
+  #main-content::after {
+    display: none !important;
+  }
+
+  /* Сбрасываем ограничения флекс-контейнеров и высоты */
+  html, body, .main-container, .content-area, #main-content {
+    background: #ffffff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+
+  #main-content {
+    max-width: 100% !important;
+  }
+
+  /* Настраиваем сетку и УМЕНЬШАЕМ её сильнее */
+  .gallery-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 10px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    transform: scale(1.0); /* Уменьшаем масштаб */
+    transform-origin: top left;
+    width: 285%; /* 100% / 0.35 = 285.7% — компенсируем ширину */ 
+  }
+
+  .gallery-column {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    /* Убрали break-inside: avoid, чтобы браузер не переносил колонку целиком */
+  }
+
+  .gallery-item {
+    box-shadow: none !important;
+    border-radius: 4px !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+  }
+
+  .gallery-item:hover {
+    box-shadow: none !important;
+    transform: none !important;
+  }
+  
+  a {
+    text-decoration: none !important;
+  }
+}
   </style>
 </head>
 <body>
@@ -78,7 +146,7 @@
 
       <!-- ОСНОВНОЙ КОНТЕНТ ГАЛЕРЕИ -->
       <div id="main-content">
-        <p style="margin-top: 15px;">Полный архив иллюстраций и кадров Бубочки:</p>
+        <p class="print-hide" style="margin-top: 15px;">Полный архив иллюстраций и кадров Бубочки:</p>
         
         <div class="gallery-grid">
   
