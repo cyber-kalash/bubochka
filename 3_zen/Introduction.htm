@@ -9,14 +9,7 @@
   <meta name="theme-color" content="#80397b">
   <link rel="shortcut icon" type="image/x-icon" href="../template/favicon.ico">
   <style>	
-/* Заголовок первой главы на мобильных — меньше и в одну строку */
-@media screen and (max-width: 1280px) {
-  #main-content .chapter-header-flex h1 {
-    font-size: 65px;       /* вместо ~70px; при необходимости меняйте шагом по 2–4px */
-    line-height: 1.5;      /* Межстрочный интервал: 1.5 больше воздуха вокруг заголовка */
-    white-space: nowrap;   /* не переносить на вторую строку */
-  }
-}
+
   </style>
 </head>
 <body>
@@ -24,7 +17,8 @@
 <div class="top-tabs">
   <a href="../index.html" id="tab-saga">Сага про чемоданы</a>
   <a href="../2_stadium/1_suzy_quatro.htm" id="tab-stadium">Стадион</a>
-  <a href="../3_zen/Introduction.htm" id="tab-zen">Кафе «У причала»</a>
+  <a href="../3_zen/Introduction.htm" id="tab-zen" class="active">Кафе «У&nbsp;причала»</a>
+  <a href="../4_degot/1_intro.htm" id="tab-degot">Дёготь</a>
 </div>
 
 <!-- === 2. ГЛАВНЫЙ ОБЩИЙ КОНТЕЙНЕР (САЙДБАР + КОНТЕНТ) === -->
@@ -77,7 +71,8 @@
 
 <!-- ТЕКСТ ГЛАВЫ -->
 <main id="main-content">
-<article>
+<!--   <h1 style="position:absolute;left:-9999px;user-select:none;">Кафе «У причала» — Введение</h1> -->
+  <article>
 <div class="meditation-guide audio-container">
   <div class="chapter-header-flex" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
     <h1 style="margin: 0;">Кафе «У причала»</h1>
@@ -97,7 +92,7 @@
   <p>Готовы? Тогда давайте начнём</p>
   <div style="text-align: center; margin: 20px 0 0;">
   <img src="images/rainy_pier_cafe.jpg" alt="Кафе у причала" width="720">
-</div>    
+</div>
 </div>
 </div>
   <div class="content-footer"></div>
