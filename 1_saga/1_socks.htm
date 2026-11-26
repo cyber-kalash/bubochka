@@ -65,7 +65,8 @@
 <div class="top-tabs">
   <a href="../index.html" id="tab-saga" class="active">Сага про чемоданы</a>
   <a href="../2_stadium/1_suzy_quatro.htm" id="tab-stadium">Стадион</a>
-  <a href="../3_zen/Introduction.htm" id="tab-zen">Кафе «У причала»</a>
+  <a href="../3_zen/Introduction.htm" id="tab-zen">Кафе «У&nbsp;причала»</a>
+  <a href="../4_degot/1_intro.htm" id="tab-degot">Дёготь</a>
 </div>
 <!-- --- 2. ГЛАВНЫЙ ОБЩИЙ КОНТЕЙНЕР (САЙДБАР + КОНТЕНТ) --- -->
 <div class="main-container">
@@ -264,9 +265,8 @@
 // Срабатывает в момент вызова печати (перед открытием диалогового окна)
 window.addEventListener('beforeprint', function() {
     const container = document.querySelector('.video-container');
-    
-    // Проверяем, чтобы картинка не дублировалась, если скрипт сработает повторно
-    if (!container.querySelector('.print-only-preview')) {
+    // Контейнер есть, и картинка ещё не добавлена
+    if (container && !container.querySelector('.print-only-preview')) {
         const img = document.createElement('img');
         img.src = 'images/bad_mama.mp4.webp'; // Путь к картинке-превью
         img.className = 'print-only-preview';
