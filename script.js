@@ -25,7 +25,7 @@ function toggleSidebar(state) {
 
   if (toggleImg) {
     var path = window.location.pathname;
-    var isSubFolder = path.includes('1_saga') || path.includes('2_stadium') || path.includes('3_zen');
+    var isSubFolder = path.includes('1_saga') || path.includes('2_stadium') || path.includes('3_zen') || path.includes('4_degot');
     var basePath = isSubFolder ? '../template/' : 'template/';
     toggleImg.src = isHidden ? basePath + 'btn-open.png' : basePath + 'btn-close.png';
   }
@@ -62,6 +62,7 @@ function highlightTopTab() {
   let index = 0;                                  // по умолчанию «Сага» (и index.html в корне)
   if (path.includes('2_stadium')) index = 1;      // «Стадион»
   else if (path.includes('3_zen')) index = 2;     // «Кафе»
+  else if (path.includes('4_degot')) index = 3;
   tabs.forEach((tab, i) => tab.classList.toggle('active', i === index));
 }
 // 6. Возвращаем на место контейнеры, которые Chrome может сдвинуть при «Озвучить страницу»

@@ -64,8 +64,9 @@
 <!-- --- 1. ВЕРХНЯЯ ПАНЕЛЬ С ВКЛАДКАМИ РАЗДЕЛОВ --- -->
 <div class="top-tabs">
   <a href="index.html" id="tab-saga" class="active">Сага про чемоданы</a>
-  <a href="2_stadium/1_suzy_quatro.htm" id="tab-stadium">Стадион</a>
-  <a href="3_zen/Introduction.htm" id="tab-zen">Кафе «У причала»</a>
+  <a href="/2_stadium/1_suzy_quatro.htm" id="tab-stadium">Стадион</a>
+  <a href="/3_zen/Introduction.htm" id="tab-zen">Кафе «У&nbsp;причала»</a>
+  <a href="/4_degot/1_intro.htm" id="tab-degot">Дёготь</a>
 </div>
 <!-- --- 2. ГЛАВНЫЙ ОБЩИЙ КОНТЕЙНЕР (САЙДБАР + КОНТЕНТ) --- -->
 <div class="main-container">
@@ -231,53 +232,16 @@
 </main>
 </div>
 </div>
-
 <script>
-// ==========================================================================
-// 1. УТИЛИТЫ И ДЕТЕКТОР УСТРОЙСТВ
-// ==========================================================================
-const isMobile = () => /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-
-
-// ==========================================================================
-// 2. УПРАВЛЕНИЕ САЙДБАРОМ (СВОРАЧИВАНИЕ И РАСКРЫТИЕ)
-// ==========================================================================
-function toggleSidebar(state) { 
-  const sidebar = document.querySelector('.sidebar'); 
-  const toggleImg = document.getElementById('sidebar-toggle-img');
-  if (!sidebar) return;
-
-  // Переключение классов видимости
-  if (state === 'hide') sidebar.classList.add('hidden'); 
-  else if (state === 'show') sidebar.classList.remove('hidden'); 
-  else sidebar.classList.toggle('hidden'); 
-
-  // Сохранение состояния в локальном хранилище
-  const isHidden = sidebar.classList.contains('hidden');
-  localStorage.setItem('sidebar_hidden', isHidden);
-
-  // Смена иконки стрелочки (путь от корня index.html)
-  if (toggleImg) {
-    toggleImg.src = isHidden ? 'template/btn-open.png' : 'template/btn-close.png';
-  }
-}
-
-
-// ==========================================================================
-// 3. ПЛЕЕР ИНТРО (УПРАВЛЕНИЕ АУДИО В ШАПКЕ ГЛАВЫ)
-// ==========================================================================
+// Плеер интро (кнопка в сайдбаре главной страницы)
 function initIntroPlayer() {
   const audio = document.getElementById('intro-audio');
   const playBtn = document.getElementById('play-intro-btn');
-
   if (!playBtn || !audio) return;
 
-  // Обработчик клика по кнопке "Play / Stop"
   playBtn.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-
     if (audio.paused) {
       audio.play();
       playBtn.classList.add('playing');
@@ -288,54 +252,27 @@ function initIntroPlayer() {
     }
   });
 
-  // Автоматический сброс кнопки при завершении трека
   audio.addEventListener('ended', () => {
     playBtn.classList.remove('playing');
   });
 }
+document.addEventListener('DOMContentLoaded', initIntroPlayer);
 
-
-// ==========================================================================
-// 4. ИНИЦИАЛИЗАЦИЯ И СОБЫТИЯ ПОСЛЕ ЗАГРУЗКИ DOM
-// ==========================================================================
-document.addEventListener('DOMContentLoaded', () => {
-  // 4.1. Кнопка сворачивания меню
-  document.getElementById('toggle-sidebar-btn')?.addEventListener('click', () => toggleSidebar());
-
-  // 4.2. Запуск аудиоплеера интро
-  initIntroPlayer();
-
-  // 4.3. Авто-сворачивание на мобильных устройствах или из кэша
-  if (isMobile()) { 
-    toggleSidebar('hide'); 
-  } else {
-    const isHiddenCache = localStorage.getItem('sidebar_hidden') === 'true';
-    toggleSidebar(isHiddenCache ? 'hide' : 'show');
+// Картинка-превью видео для печати
+window.addEventListener('beforeprint', function () {
+  const container = document.querySelector('.video-container');
+  if (container && !container.querySelector('.print-only-preview')) {
+    const img = document.createElement('img');
+    img.src = '1_saga/images/bad_mama.mp4.webp';
+    img.className = 'print-only-preview';
+    img.style.display = 'block';
+    container.appendChild(img);
   }
 });
-
-// Срабатывает в момент вызова печати (перед открытием диалогового окна)
-window.addEventListener('beforeprint', function() {
-    const container = document.querySelector('.video-container');
-    
-    // Проверяем, чтобы картинка не дублировалась, если скрипт сработает повторно
-    if (!container.querySelector('.print-only-preview')) {
-        const img = document.createElement('img');
-        img.src = '1_saga/images/bad_mama.mp4.webp'; // Путь к картинке-превью с учетом вложенности
-        img.className = 'print-only-preview';
-        img.style.display = 'block';
-        container.appendChild(img); // Добавляем картинку в контейнер плеера
-    }
+window.addEventListener('afterprint', function () {
+  const preview = document.querySelector('.print-only-preview');
+  if (preview) preview.remove();
 });
-
-// Срабатывает сразу после закрытия окна печати или завершения процесса
-window.addEventListener('afterprint', function() {
-    const preview = document.querySelector('.print-only-preview');
-    
-    // Удаляем созданную картинку, чтобы в обычном режиме её не было в разметке
-    if (preview) preview.remove();
-});
-
 </script>
 </body>
 </html>

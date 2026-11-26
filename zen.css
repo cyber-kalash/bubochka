@@ -375,8 +375,17 @@
 
     /* VI.6. Верхние вкладки */
     .top-tabs a {
-      font-size: 18px;
-      padding: 10px 20px;
+        flex: 1 1 0;               /* четыре равные вкладки в одном ряду */
+        min-width: 0;
+        box-sizing: border-box;
+        padding: 6px 4px;          /* было 10px 20px — боковые 20px не давали сжаться */
+        font-size: 13px;           /* было 18px; не влезает — 12px, есть запас — 14px */
+        line-height: 1.15;
+        white-space: normal;       /* разрешаем перенос строки */
+        overflow-wrap: normal;     /* слово целиком не рвём */
+        display: flex;             /* центрирование текста и по высоте */
+        align-items: center;
+        justify-content: center;
     }
 
     /* VI.7. Увеличение шрифта при скрытом сайдбаре */
