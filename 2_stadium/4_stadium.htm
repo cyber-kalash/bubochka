@@ -37,7 +37,7 @@
     html body .sidebar.hidden ~ .content-area #main-content li,
     html body .sidebar.hidden ~ .content-area #main-content div {
       font-size: 11pt !important;
-      line-height: 1.67 !important;    
+      line-height: 1.68 !important;    
     }    
   }
 
@@ -77,6 +77,37 @@
       display: block !important;
     }
   }
+  
+  @media print {
+    /* Управляем размером блока с видео при печати */
+    .video-container {
+      width: 260px !important; 
+      margin: 0px 10px 5px 0px !important;
+    }
+
+    /* Показываем и подстраиваем картинку-превью при печати */
+    img.print-only-preview {
+      display: block !important; 
+      width: 100% !important; 
+      height: auto !important; 
+    }
+
+  
+    /* PRINT.5. ОСНОВНОЙ ТЕКСТ И ШРИФТЫ */
+    body #main-content, 
+    body #main-content p, 
+    body #main-content span, 
+    body #main-content li, 
+    body #main-content div,
+    html body .sidebar.hidden ~ .content-area #main-content,
+    html body .sidebar.hidden ~ .content-area #main-content p,
+    html body .sidebar.hidden ~ .content-area #main-content span,
+    html body .sidebar.hidden ~ .content-area #main-content li,
+    html body .sidebar.hidden ~ .content-area #main-content div {
+        font-size: 11pt !important;
+        line-height: 1.67 !important;   /* Задаем комфортный межстрочный интервал */	
+	}   
+  }  
 </style>
 </head>
 <body>
@@ -84,7 +115,8 @@
 <div class="top-tabs">
   <a href="../index.html" id="tab-saga">Сага про чемоданы</a>
   <a href="../2_stadium/1_suzy_quatro.htm" id="tab-stadium" class="active">Стадион</a>
-  <a href="../3_zen/Introduction.htm" id="tab-zen">Кафе «У причала»</a>
+  <a href="../3_zen/Introduction.htm" id="tab-zen">Кафе «У&nbsp;причала»</a>
+  <a href="../4_degot/1_intro.htm" id="tab-degot">Дёготь</a>
 </div>
 <!-- --- 2. ГЛАВНЫЙ ОБЩИЙ КОНТЕЙНЕР (САЙДБАР + КОНТЕНТ) --- -->
 <div class="main-container">
